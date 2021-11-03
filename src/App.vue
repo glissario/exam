@@ -1,11 +1,22 @@
 <template>
+  <img src="./assets/MedAssSchaft.jpg" />
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    
+    <top-navigation/>
+
   </div>
-  <router-view />
+  <router-view class="content-wrapper"/>
 </template>
 
+<script>
+import TopNavigation from '@/components/TopNavigation.vue'
+
+
+export default {
+  components: { TopNavigation },
+
+}
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -13,17 +24,27 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color:white;
+  max-width: 50rem;
+  margin: 0 auto;
+}
+  html{
+    background-color: #573643;
+  }
+
+  img{
+    margin: 0;
+    max-width: 250px;
 }
 
 #nav {
-  padding: 30px;
+  padding: 30px 0;
+
 
   a {
-    font-weight: bold;
-    color: #2c3e50;
-
+    font-weight: bold;    
     &.router-link-exact-active {
-      color: #42b983;
+
     }
   }
 }
