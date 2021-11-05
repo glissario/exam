@@ -33,6 +33,7 @@ export default {
   },
   methods: {
     async checkLogin() {
+      this.$store.state.isLoggedIn=true
       const docRef = doc(firestore, "user", "glissario");
       const docSnap = await getDoc(docRef);
 
