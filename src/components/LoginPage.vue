@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     async checkLogin() {
-      this.$store.state.isLoggedIn=true
+      this.$store.state.isLoggedIn = true;
       const docRef = doc(firestore, "user", "glissario");
       const docSnap = await getDoc(docRef);
 
@@ -70,7 +70,7 @@ export default {
   }
   .p-password {
     color: #da7573;
-    border: 2px solid #573643;
+    border: 1px solid #573643;
     .input-password {
       width: 100%;
       background-color: blue;
