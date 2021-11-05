@@ -1,7 +1,8 @@
 <template>
   <div v-if="this.$store.state.user !== null">
     <router-link :to="{ name: 'About' }">Über uns</router-link>
-    <router-link :to="{ name: 'Moduls' }">Module</router-link>
+    <router-link :to="{ name: 'Moduls' }">Module einsehen</router-link>
+    <router-link :to="{ name: 'Questions' }">Fragen eingeben</router-link>
     <router-link :to="{ name: 'Contact' }">Kontakt</router-link>
   </div>
 </template>

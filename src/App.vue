@@ -4,27 +4,17 @@
     <top-navigation />
   </div>
   <router-view />
-  <Button
-    v-if="this.$store.state.user"
-    @click="logout"
-    class="p-button-outlined"
-  >
-    Logout
-  </Button>
+
+  <footer-view />
 </template>
 
 <script>
 import TopNavigation from "@/components/TopNavigation.vue";
-import Button from "primevue/button";
+
+import FooterView from "@/views/FooterView.vue";
 
 export default {
-  components: { TopNavigation, Button },
-  methods: {
-    logout() {
-      this.$store.state.user = null;
-      this.$router.push({ name: "Login" });
-    },
-  },
+  components: { TopNavigation, FooterView },
 };
 </script>
 <style lang="scss">
@@ -55,5 +45,9 @@ img {
     &.router-link-exact-active {
     }
   }
+}
+
+.p-button {
+  margin: 5rem;
 }
 </style>

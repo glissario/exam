@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import store from "../store";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -27,6 +28,9 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/about",
     name: "About",
+    meta: {
+      requiresAuth: true,
+    },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -36,6 +40,9 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/moduls",
     name: "Moduls",
+    meta: {
+      requiresAuth: true,
+    },
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/ModuleOverview.vue"),
     children: [
@@ -51,6 +58,9 @@ const routes: Array<RouteRecordRaw> = [
         path: "/moduls/question",
         name: "QuestionOverview",
         props: true,
+        meta: {
+          requiresAuth: true,
+        },
         component: () =>
           import(
             /* webpackChunkName: "about" */ "../components/moduls/QuestionOverview.vue"
@@ -59,8 +69,23 @@ const routes: Array<RouteRecordRaw> = [
     ],
   },
   {
+    path: "/questions",
+    name: "Questions",
+    meta: {
+      requiresAuth: true,
+    },
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/AddQuestionView.vue"),
+  },
+  {
     path: "/contact",
     name: "Contact",
+    meta: {
+      requiresAuth: true,
+    },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -72,6 +97,21 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  const isUserLoggedIn = store.state.user;
+  console.log(isUserLoggedIn);
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    console.log(isUserLoggedIn);
+    if (isUserLoggedIn == null) {
+      return next({ name: "Login" });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
 });
 
 export default router;
