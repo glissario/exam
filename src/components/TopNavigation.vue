@@ -1,5 +1,5 @@
 <template>
-  <div v-if="this.$store.state.isLoggedIn">
+  <div v-if="this.$store.state.user !== null">
     <router-link :to="{ name: 'About' }">Über uns</router-link>
     <router-link :to="{ name: 'Moduls' }">Module</router-link>
     <router-link :to="{ name: 'Contact' }">Kontakt</router-link>
