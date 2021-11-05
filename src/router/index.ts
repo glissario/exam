@@ -101,9 +101,8 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const isUserLoggedIn = store.state.user;
-  console.log(isUserLoggedIn);
+
   if (to.matched.some((record) => record.meta.requiresAuth)) {
-    console.log(isUserLoggedIn);
     if (isUserLoggedIn == null) {
       return next({ name: "Login" });
     } else {
