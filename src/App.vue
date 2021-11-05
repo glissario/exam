@@ -4,13 +4,27 @@
     <top-navigation />
   </div>
   <router-view />
+  <Button
+    v-if="this.$store.state.user"
+    @click="logout"
+    class="p-button-outlined"
+  >
+    Logout
+  </Button>
 </template>
 
 <script>
 import TopNavigation from "@/components/TopNavigation.vue";
+import Button from "primevue/button";
 
 export default {
-  components: { TopNavigation },
+  components: { TopNavigation, Button },
+  methods: {
+    logout() {
+      this.$store.state.user = null;
+      this.$router.push({ name: "Login" });
+    },
+  },
 };
 </script>
 <style lang="scss">

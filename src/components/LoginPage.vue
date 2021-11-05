@@ -2,6 +2,7 @@
   <div class="login-form">
     <InputText v-model="login" placeholder="E-Mail" />
     <Password
+      @keyup.enter="checkLogin"
       v-model="password"
       style="password"
       inputClass="input-password"
@@ -21,7 +22,7 @@ import Button from "primevue/button";
 import Password from "primevue/password";
 import InputText from "primevue/inputtext";
 import firestore from "@/firestore";
-import { setDoc, getDoc, doc } from "firebase/firestore";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 export default {
   components: { Button, Password, InputText },
@@ -33,23 +34,16 @@ export default {
   },
   methods: {
     async checkLogin() {
-      this.$store.state.isLoggedIn = true;
-      const docRef = doc(firestore, "user", "glissario");
-      const docSnap = await getDoc(docRef);
+      const auth = getAuth();
+      signInWithEmailAndPassword(auth, this.login, this.password).then(
+        (userCredential) => {
+          // Signed in
+          this.$store.state.user = userCredential.user;
+          this.$router.push({ name: "Moduls" });
+        }
+      );
+    },
 
-      if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data());
-      } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-      }
-    },
-    createUser() {
-      setDoc(doc(firestore, "user"), {
-        Email: this.$store.getters.getCurrentUserID,
-        login: this.userRole,
-      });
-    },
     routeToRegister() {
       this.$router.push({ name: "Register" });
     },

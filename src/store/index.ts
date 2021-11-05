@@ -2,11 +2,12 @@ import { createStore } from "vuex";
 
 export default createStore({
   state() {
-    return{
+    return {
       actualModule: null,
       actualSemester: null,
-      isLoggedIn: false
-  }
+      isLoggedIn: false,
+      user: null,
+    };
   },
   mutations: {},
   actions: {},
