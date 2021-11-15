@@ -36,7 +36,7 @@ import InputText from "primevue/inputtext";
 import Button from "primevue/button";
 
 export default {
-  component: { TreeSelect, InputText, Button },
+  components: { TreeSelect, InputText, Button },
   data() {
     return {
       selectedModule: null,
