@@ -1,10 +1,13 @@
 <template>
-  <div v-if="this.$store.state.user !== null" class="nav-wrapper">
+  <nav
+    v-if="this.$store.state.user !== null && !mobileNavigation"
+    class="nav-wrapper"
+  >
     <router-link :to="{ name: 'About' }">Über uns</router-link>
     <router-link :to="{ name: 'Moduls' }">Module einsehen</router-link>
     <router-link :to="{ name: 'Questions' }">Fragen eingeben</router-link>
     <router-link :to="{ name: 'Literatur' }">Literatur</router-link>
-  </div>
+  </nav>
 </template>
 
 <script>
@@ -12,12 +15,19 @@ export default {
   name: "MainNavigation",
 
   data() {
-    return {};
+    return {
+      mobileNavigation: window.matchMedia(screen && "(max-width:600x)").matches,
+    };
+  },
+  created() {
+    window.addEventListener("resize", this.checkMobileNavigation);
+    this.checkMobileNavigation();
   },
   methods: {
-    routePage() {
-      console.log(event.target.innerText);
-      console.log(this.$route);
+    checkMobileNavigation() {
+      this.mobileNavigation = window.matchMedia(
+        screen && "(max-width:600px)"
+      ).matches;
     },
   },
 };

@@ -5,6 +5,7 @@ import router from "./router";
 import store from "./store";
 import Button from "primevue/button";
 import TreeSelect from "primevue/treeselect";
+import InputText from "primevue/inputtext";
 import Password from "primevue/password";
 import Dropdown from "primevue/dropdown";
 
@@ -17,5 +18,6 @@ const app = createApp(App);
 app.use(PrimeVue);
 app.component("MyButton", Button);
 app.component("TreeSelect", TreeSelect);
+app.component("InputText", InputText);
 app.use(store).use(router);
 app.mount("#app");

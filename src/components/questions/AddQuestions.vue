@@ -156,7 +156,8 @@ export default {
 <style lang="scss" scoped>
 .question-wrapper {
   min-height: 10rem;
-  width: 80%;
+  width: 100%;
+  padding-right: 0.5rem;
   padding-bottom: 2rem;
   margin: 0 auto;
   .question-form {

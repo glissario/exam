@@ -1,19 +1,21 @@
 <template>
   <img src="./assets/MedAssSchaft.jpg" />
-  <div id="nav">
-    <top-navigation />
+  <TopNavigation />
+  <div class="mobile-wrapper">
+    <MobileNavigation />
+    <router-view />
   </div>
-  <router-view />
   <footer-view />
 </template>
 
 <script>
-import TopNavigation from "@/components/TopNavigation.vue";
+import TopNavigation from "@/components/navigation/TopNavigation.vue";
+import MobileNavigation from "@/components/navigation/MobileNavigation.vue";
 
 import FooterView from "@/views/FooterView.vue";
 
 export default {
-  components: { TopNavigation, FooterView },
+  components: { TopNavigation, MobileNavigation, FooterView },
 };
 </script>
 <style lang="scss">
@@ -23,6 +25,7 @@ export default {
   --third-color: #ad6a6c;
   --background-color: #573643;
   --white-color: #fafafa;
+  font-size: 18px;
 }
 
 #app {
@@ -37,14 +40,40 @@ export default {
 }
 html {
   background-color: var(--background-color);
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.8rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
 }
 
 img {
-  margin: 0;
+  margin: 0 auto;
   max-width: 250px;
 }
 
 .p-button {
   margin: 5rem;
+}
+
+@media screen and (max-width: 600px) {
+  html {
+    h2 {
+      font-size: 1.5rem;
+    }
+    label {
+      font-size: 0.6rem;
+    }
+  }
+  .mobile-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: center;
+  }
 }
 </style>

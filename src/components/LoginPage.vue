@@ -4,17 +4,16 @@
     <Password
       @keyup.enter="checkLogin"
       v-model="password"
-      style="password"
-      inputClass="input-password"
+      class="pw-wrapper"
       :feedback="false"
       placeholder="Enter password"
     />
     <Button @click="checkLogin" class="p-button-outlined"> Login </Button>
-  </div>
 
-  <Button @click="routeToRegister" class="p-button-outlined">
-    Zur Registrierung
-  </Button>
+    <Button @click="routeToRegister" class="p-button-outlined p-blue">
+      Zur Registrierung
+    </Button>
+  </div>
 </template>
 
 <script>
@@ -58,39 +57,35 @@ export default {
   justify-content: center;
   flex-direction: column;
   padding-bottom: 2rem;
+  color: var(--font-color);
 
   .p-inputtext {
-    width: 13.8rem;
+    width: 18rem;
   }
-  .p-password {
-    color: #da7573;
-    border: 1px solid #573643;
-    .input-password {
-      width: 100%;
-      background-color: blue;
-    }
-  }
-  .password {
-    .input-password {
-      width: 100%;
-      background-color: red;
-    }
+  .p-inputtext {
+    color: var(--third-color);
+    border: 1px solid var(--third-color);
+    margin: 0.35rem 0;
   }
 
   .p-button {
-    color: #da7573;
+    color: var(--third-color);
     margin: 0.35rem 0;
     width: 13.8rem;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  .p-button:hover {
-    color: black;
+  .p-password {
+    border: 1px solid var(--third-color);
+    width: 18rem;
+  }
+  .p-button {
+    width: 18rem;
   }
 }
-
-.p-inputtext {
+.pw-wrapper {
   width: 100%;
+  background-color: white;
 }
 </style>
