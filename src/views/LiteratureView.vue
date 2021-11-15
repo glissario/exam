@@ -1,5 +1,5 @@
 <template>
-  <h2>This is an about page</h2>
+  <h2>Literature</h2>
 </template>
 
 <style scoped>

@@ -46,6 +46,7 @@ export default {
         this.$store.state.actualSemester.key.length > 5
       ) {
         this.$router.push({ name: "SemesterOverview" });
+        this.$store.state.actualQuestion = null;
       } else {
         for (let i = 0; i < this.nodes.length; i++) {
           if (this.nodes[i].children.length > 0) {
@@ -56,6 +57,7 @@ export default {
               ) {
                 this.$store.state.actualModule = this.nodes[i].children[j];
                 this.$router.push({ name: "QuestionOverview" });
+                this.$store.state.actualQuestion = null;
                 return;
               }
             }

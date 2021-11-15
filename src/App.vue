@@ -4,7 +4,6 @@
     <top-navigation />
   </div>
   <router-view />
-
   <footer-view />
 </template>
 
@@ -18,33 +17,31 @@ export default {
 };
 </script>
 <style lang="scss">
+:root {
+  --font-color: #300044;
+  --secondary-color: #006874;
+  --third-color: #ad6a6c;
+  --background-color: #573643;
+  --white-color: #fafafa;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  background-color: white;
+  color: var(--font-color);
+  background-color: var(--white-color);
   max-width: 50rem;
   margin: 0 auto;
 }
 html {
-  background-color: #573643;
+  background-color: var(--background-color);
 }
 
 img {
   margin: 0;
   max-width: 250px;
-}
-
-#nav {
-  padding: 30px 0;
-
-  a {
-    font-weight: bold;
-    &.router-link-exact-active {
-    }
-  }
 }
 
 .p-button {

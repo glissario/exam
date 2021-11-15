@@ -1,9 +1,9 @@
 <template>
-  <div v-if="this.$store.state.user !== null">
+  <div v-if="this.$store.state.user !== null" class="nav-wrapper">
     <router-link :to="{ name: 'About' }">Über uns</router-link>
     <router-link :to="{ name: 'Moduls' }">Module einsehen</router-link>
     <router-link :to="{ name: 'Questions' }">Fragen eingeben</router-link>
-    <router-link :to="{ name: 'Contact' }">Kontakt</router-link>
+    <router-link :to="{ name: 'Literatur' }">Literatur</router-link>
   </div>
 </template>
 
@@ -23,17 +23,22 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-a {
-  text-decoration: none;
-  padding: 0.5rem 0.25rem;
-  margin: 0 1rem;
-  color: #573643;
-  border: 2px solid #441428;
-}
+<style lang="scss">
+.nav-wrapper {
+  padding: 30px 0;
+  a {
+    font-weight: bold;
+    text-decoration: none;
+    padding: 0.5rem 0.25rem;
+    margin: 0 0.25rem;
+    color: var(--font-color);
+    border: 2px solid var(--font-color);
+  }
 
-a.router-link-active {
-  color: #da7573;
-  cursor: pointer;
+  a.router-link-active {
+    color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+    cursor: pointer;
+  }
 }
 </style>

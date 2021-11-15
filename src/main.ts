@@ -6,6 +6,7 @@ import store from "./store";
 import Button from "primevue/button";
 import TreeSelect from "primevue/treeselect";
 import Password from "primevue/password";
+import Dropdown from "primevue/dropdown";
 
 import "primevue/resources/themes/saga-blue/theme.css"; //theme
 import "primevue/resources/primevue.min.css"; //core css

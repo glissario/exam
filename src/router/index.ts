@@ -55,7 +55,7 @@ const routes: Array<RouteRecordRaw> = [
           ),
       },
       {
-        path: "/moduls/question",
+        path: "/moduls/questions",
         name: "QuestionOverview",
         props: true,
         meta: {
@@ -65,6 +65,17 @@ const routes: Array<RouteRecordRaw> = [
           import(
             /* webpackChunkName: "about" */ "../components/moduls/QuestionOverview.vue"
           ),
+        children: [
+          {
+            path: "/moduls/questions/:question",
+            name: "QuestionDetails",
+            props: true,
+            component: () =>
+              import(
+                /* webpackChunkName: "about" */ "../components/moduls/QuestionDetails.vue"
+              ),
+          },
+        ],
       },
     ],
   },
@@ -81,8 +92,8 @@ const routes: Array<RouteRecordRaw> = [
       import(/* webpackChunkName: "about" */ "../views/AddQuestionView.vue"),
   },
   {
-    path: "/contact",
-    name: "Contact",
+    path: "/literature",
+    name: "Literatur",
     meta: {
       requiresAuth: true,
     },
@@ -90,7 +101,7 @@ const routes: Array<RouteRecordRaw> = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/ContactView.vue"),
+      import(/* webpackChunkName: "about" */ "../views/LiteratureView.vue"),
   },
 ];
 

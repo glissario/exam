@@ -21,3 +21,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+Button {
+  margin: 1rem 0;
+}
+</style>
