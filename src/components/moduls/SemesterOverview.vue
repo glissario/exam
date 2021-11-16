@@ -46,6 +46,7 @@ export default {
 .semester-overview-wrapper {
   min-height: 10rem;
   color: var(--font-color);
+  width: 100%;
   padding-bottom: 2rem;
   .buttonwrapper {
     display: flex;
@@ -55,7 +56,7 @@ export default {
     .p-button {
       color: var(--secondary-color);
       margin: 0.35rem 0;
-      width: 75%;
+      width: 80%;
       display: flex;
       align-items: center;
       justify-content: center;

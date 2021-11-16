@@ -3,10 +3,13 @@
     v-if="this.$store.state.user !== null && !mobileNavigation"
     class="nav-wrapper"
   >
-    <router-link :to="{ name: 'About' }">Über uns</router-link>
-    <router-link :to="{ name: 'Moduls' }">Module einsehen</router-link>
-    <router-link :to="{ name: 'Questions' }">Fragen eingeben</router-link>
-    <router-link :to="{ name: 'Literatur' }">Literatur</router-link>
+    <div v-if="this.$store.state.user.emailVerified">
+      <router-link :to="{ name: 'About' }">Über uns</router-link>
+      <router-link :to="{ name: 'Moduls' }">Module einsehen</router-link>
+      <router-link :to="{ name: 'Questions' }">Fragen eingeben</router-link>
+      <router-link :to="{ name: 'Literatur' }">Literatur</router-link>
+      <router-link :to="{ name: 'Profil' }">Profil</router-link>
+    </div>
   </nav>
 </template>
 
@@ -22,6 +25,11 @@ export default {
   created() {
     window.addEventListener("resize", this.checkMobileNavigation);
     this.checkMobileNavigation();
+  },
+  computed: {
+    verifiedUser() {
+      return true;
+    },
   },
   methods: {
     checkMobileNavigation() {

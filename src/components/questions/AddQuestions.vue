@@ -161,7 +161,7 @@ export default {
   padding-bottom: 2rem;
   margin: 0 auto;
   .question-form {
-    color: var(--secondary-color);
+    color: var(--font-color);
     display: grid;
     grid-template-columns: 1fr 3fr;
     margin-bottom: 2rem;
@@ -178,14 +178,14 @@ export default {
     justify-content: center;
   }
   Button {
-    background-color: var(--secondary-color);
+    background-color: var(--font-color);
   }
   Button + Button {
     margin-left: 1.5rem;
   }
   .p-button:hover {
     color: var(--white-color);
-    background-color: var(--background-color);
+    background-color: var(--font-color);
   }
 }
 </style>

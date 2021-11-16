@@ -8,11 +8,18 @@
       :feedback="false"
       placeholder="Enter password"
     />
+    <small v-if="showError" id="username2-help" class="p-error"
+      >falsches Passwort</small
+    >
+    <div class="pw-wrapper">
+      <Button @click="resetPw" class="reset-pw p-button-outlined"
+        >neues Passwort</Button
+      >
+      <Button @click="routeToRegister" class="p-button-outlined p-blue">
+        Registrierung
+      </Button>
+    </div>
     <Button @click="checkLogin" class="p-button-outlined"> Login </Button>
-
-    <Button @click="routeToRegister" class="p-button-outlined p-blue">
-      Zur Registrierung
-    </Button>
   </div>
 </template>
 
@@ -21,7 +28,11 @@ import Button from "primevue/button";
 import Password from "primevue/password";
 import InputText from "primevue/inputtext";
 import firestore from "@/firestore";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+} from "firebase/auth";
 
 export default {
   components: { Button, Password, InputText },
@@ -29,20 +40,34 @@ export default {
     return {
       password: null,
       login: null,
+      showError: false,
+      delay: 200,
     };
   },
   methods: {
     async checkLogin() {
       const auth = getAuth();
-      signInWithEmailAndPassword(auth, this.login, this.password).then(
-        (userCredential) => {
+      signInWithEmailAndPassword(auth, this.login, this.password)
+        .then((userCredential) => {
           // Signed in
           this.$store.state.user = userCredential.user;
-          this.$router.push({ name: "Moduls" });
-        }
-      );
+          console.log(this.$store.state.user.emailVerified);
+          if (this.$store.state.user.emailVerified) {
+            this.$router.push({ name: "Moduls" });
+          } else {
+            this.$router.push({ name: "Profil" });
+          }
+        })
+        .catch((error) => {
+          console.log("test");
+          this.showError = true;
+          setTimeout(() => (this.showError = false), 2500);
+        });
     },
-
+    resetPw() {
+      const auth = getAuth();
+      sendPasswordResetEmail(auth, this.login);
+    },
     routeToRegister() {
       this.$router.push({ name: "Register" });
     },
@@ -83,9 +108,24 @@ export default {
   .p-button {
     width: 18rem;
   }
+  .p-button:hover {
+    color: var(--white-color);
+    background-color: var(--background-color);
+  }
 }
 .pw-wrapper {
-  width: 100%;
+  width: 18rem;
   background-color: white;
+  display: flex;
+  flex-direction: row;
+
+  .reset-pw {
+    width: 30%;
+    font-size: 12px;
+  }
+  .p-button:hover {
+    color: var(--white-color);
+    background-color: var(--background-color);
+  }
 }
 </style>

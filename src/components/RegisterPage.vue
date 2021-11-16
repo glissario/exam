@@ -1,5 +1,4 @@
 <template>
-  <h2>Register</h2>
   <div class="register-form">
     <div class="input-email">
       <InputText
@@ -90,9 +89,11 @@ export default {
           this.login.substring(this.login.length - 21, this.login.length)
         ) {
           this.invalidLogin = true;
+          setTimeout(() => (this.invalidLogin = false), 2500);
         }
         if (this.password !== this.passwordConfirmation) {
           this.invalidPassword = true;
+          setTimeout(() => (this.invalidPassword = false), 2500);
         }
       }
     },
@@ -109,11 +110,57 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 1rem;
+  padding-bottom: 2rem;
+  color: var(--font-color);
+
   .input-email,
   .input-password {
     display: flex;
     flex-direction: column;
+  }
+
+  .p-inputtext {
+    width: 18rem;
+  }
+  .p-inputtext {
+    color: var(--third-color);
+    border: 1px solid var(--third-color);
+    margin: 0.35rem 0;
+  }
+
+  .p-button {
+    color: var(--third-color);
+    margin: 0.35rem 0;
+    width: 13.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .p-password {
+    border: 1px solid var(--third-color);
+    width: 18rem;
+  }
+  .p-button {
+    width: 18rem;
+  }
+  .p-button:hover {
+    color: var(--white-color);
+    background-color: var(--background-color);
+  }
+}
+.pw-wrapper {
+  width: 18rem;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+
+  .reset-pw {
+    width: 30%;
+    font-size: 12px;
+  }
+  .p-button:hover {
+    color: var(--white-color);
+    background-color: var(--background-color);
   }
 }
 </style>

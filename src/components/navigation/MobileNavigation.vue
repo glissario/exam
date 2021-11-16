@@ -16,6 +16,9 @@
       <router-link class="nav-element" :to="{ name: 'Literatur' }"
         >Literatur</router-link
       >
+      <router-link class="nav-element" :to="{ name: 'Profil' }"
+        >Profil</router-link
+      >
     </ul>
   </nav>
 </template>

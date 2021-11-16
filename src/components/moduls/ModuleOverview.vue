@@ -11,13 +11,19 @@
         type="text"
         v-model="keyword"
         class="keyword-search"
-        placeholder="Suche ein Schlüsselwort"
+        placeholder="Oder suche ein Schlüsselwort"
         @keyup.enter="getKeywordQuestions"
       />
     </div>
+    <h2 v-if="actualKeyword">{{ actualKeyword }}</h2>
     <div class="list-wrapper" v-if="searchedQuestions.length > 0">
       <ul>
-        <Button v-for="(question, index) in searchedQuestions" :key="index">
+        <Button
+          v-for="(question, index) in searchedQuestions"
+          :key="index"
+          class="p-button-outlined"
+          @click="routeToQuestion(question)"
+        >
           {{ question.question }}
         </Button>
       </ul>
@@ -46,6 +52,7 @@ export default {
       nodes: null,
       moduls,
       keyword: "",
+      actualKeyword: "",
     };
   },
   computed: {
@@ -63,7 +70,10 @@ export default {
   watcher: {},
   methods: {
     changeRoute() {
+      this.$router.push({ name: "Moduls" });
       this.$store.state.actualSemester = this.filteredSemester();
+      this.searchedQuestions = [];
+      this.actualKeyword = "";
       if (
         this.$store.state.actualSemester != null &&
         this.$store.state.actualSemester.key.length > 5
@@ -99,10 +109,15 @@ export default {
       }
     },
     async getKeywordQuestions() {
+      this.$router.push({ name: "Moduls" });
+      this.actualKeyword = this.keyword;
+      this.$store.state.actualModule = null;
+      this.$store.state.actualQuestion = null;
       this.searchedQuestions = [];
+      this.allModules = [];
+
       this.getAllModules();
       for (let i = 0; i < this.allModules.length; i++) {
-        console.log(this.allModules[i]);
         const docSnap = collection(
           firestore,
           "moduls",
@@ -118,7 +133,7 @@ export default {
           }
         });
       }
-      console.log(this.searchedKeywords);
+      this.keyword = "";
     },
 
     getAllModules() {
@@ -131,8 +146,16 @@ export default {
           }
         }
       }
-      console.log(this.allModules);
       return this.allModules;
+    },
+    routeToQuestion(question) {
+      this.$store.state.actualQuestion = question;
+      this.$router.push({
+        name: "SearchQuestionDetails",
+        params: {
+          question: question.question,
+        },
+      });
     },
   },
 };
@@ -149,12 +172,35 @@ export default {
   width: 100%;
   .action-wrapper {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 80%;
     .keyword-search {
       margin: 0;
-      margin-left: 0.75rem;
+      margin-top: 1rem;
       width: 100%;
+    }
+  }
+  .list-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    ul {
+      padding: 0;
+      margin: 0;
+      width: 80%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      padding-bottom: 2rem;
+    }
+    .p-button {
+      margin: 0.35rem 0;
+      width: 100%;
+      color: var(--secondary-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 }
@@ -164,7 +210,6 @@ export default {
       flex-direction: column;
       .keyword-search {
         margin-left: 0rem;
-        margin-top: 1rem;
       }
     }
   }

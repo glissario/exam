@@ -1,5 +1,5 @@
 <template>
-  <div class="question-detail-wrapper">
+  <div class="question-detail-wrapper" v-if="actualQuestion">
     <h3>
       {{ this.actualQuestion.question }}
     </h3>
@@ -39,13 +39,13 @@ export default {
         : "zeige Schlüsselwörter";
     },
   },
+
   props: {
     question: null,
   },
   methods: {
     showDetails() {
       this.showKeys = !this.showKeys;
-      console.log(this.actualQuestion.keyword);
     },
   },
 };
@@ -53,16 +53,16 @@ export default {
 
 <style lang="scss" scoped>
 .question-detail-wrapper {
-  color: var(--secondary-color);
+  color: var(--font-color);
   width: 80%;
   margin: 1rem auto;
-  border: 1px solid var(--secondary-color);
+  border: 1px solid var(--font-color);
   .p-button-secondary {
-    background-color: var(--secondary-color);
+    background-color: var(--font-color);
   }
   .p-button:hover {
     background-color: var(--white-color);
-    color: var(--secondary-color);
+    color: var(--font-color);
   }
   ul {
     padding: 0;
