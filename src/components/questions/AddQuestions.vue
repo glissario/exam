@@ -69,14 +69,13 @@
 </template>
 
 <script>
-import InputText from "primevue/inputtext";
 import { collection, addDoc, doc, setDoc } from "firebase/firestore";
 import { getAuth, updateProfile } from "firebase/auth";
 
 import firestore from "@/firestore.js";
 import Dropdown from "primevue/dropdown";
 import moduls from "@/components/moduls/modulePlan.json";
-
+import InputText from "primevue/inputtext";
 import Button from "primevue/button";
 
 export default {
@@ -186,6 +185,13 @@ export default {
   .p-button:hover {
     color: var(--white-color);
     background-color: var(--font-color);
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .p-dropdown,
+  .p-inputtext {
+    width: 10rem;
   }
 }
 </style>

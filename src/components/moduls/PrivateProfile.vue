@@ -154,7 +154,7 @@ export default {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: start;
+    justify-content: flex-start;
     margin: 0.15rem 0;
     width: 50%;
     grid-template-columns: 1fr 2fr;

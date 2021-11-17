@@ -84,4 +84,14 @@ export default {
     }
   }
 }
+@media screen and (max-width: 400px) {
+  .nav-wrapper {
+    width: 5rem;
+    .nav-list {
+      .nav-element {
+        font-size: 0.55rem;
+      }
+    }
+  }
+}
 </style>

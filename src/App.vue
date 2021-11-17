@@ -72,7 +72,7 @@ img {
   .mobile-wrapper {
     display: flex;
     flex-direction: row;
-    align-items: start;
+    align-items: flex-start;
     justify-content: center;
   }
 }

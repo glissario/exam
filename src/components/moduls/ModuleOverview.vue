@@ -6,6 +6,7 @@
         v-model="selectedModule"
         :options="nodes"
         placeholder="Wähle ein Modul"
+        panelClass="panel"
       />
       <InputText
         type="text"
@@ -165,7 +166,7 @@ export default {
 .content-wrapper {
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
   flex-direction: column;
   min-height: 10rem;
   margin-top: 0.5rem;
@@ -180,30 +181,31 @@ export default {
       width: 100%;
     }
   }
-  .list-wrapper {
-    width: 100%;
+}
+.list-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  ul {
+    padding: 0;
+    margin: 0;
+    width: 80%;
     display: flex;
-    align-items: start;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 2rem;
+  }
+  .p-button {
+    margin: 0.35rem 0;
+    width: 100%;
+    color: var(--secondary-color);
+    display: flex;
+    align-items: center;
     justify-content: center;
-    ul {
-      padding: 0;
-      margin: 0;
-      width: 80%;
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      padding-bottom: 2rem;
-    }
-    .p-button {
-      margin: 0.35rem 0;
-      width: 100%;
-      color: var(--secondary-color);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
   }
 }
+
 @media screen and (max-width: 600px) {
   .content-wrapper {
     .action-wrapper {
