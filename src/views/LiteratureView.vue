@@ -1,5 +1,5 @@
 <template>
-  <h2>Literature</h2>
+  <h2>Literatur</h2>
 </template>
 
 <style scoped>

@@ -56,10 +56,6 @@ img {
   max-width: 250px;
 }
 
-.p-button {
-  margin: 5rem;
-}
-
 @media screen and (max-width: 600px) {
   html {
     h2 {
