@@ -15,12 +15,13 @@
       <Button @click="resetPw" class="reset-pw p-button-outlined"
         >neues Passwort</Button
       >
-      <Button @click="routeToRegister" class="p-button-outlined p-blue">
-        Registrierung
-      </Button>
+
+      <Button @click="checkLogin" class="p-button-outlined"> Login </Button>
     </div>
-    <Button @click="checkLogin" class="p-button-outlined"> Login </Button>
   </div>
+  <Button @click="routeToRegister" class="p-button-outlined p-blue">
+    Zur Registrierung
+  </Button>
 </template>
 
 <script>
