@@ -56,7 +56,7 @@ img {
   max-width: 250px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 650px) {
   html {
     h2 {
       font-size: 1.5rem;

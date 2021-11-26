@@ -19,7 +19,7 @@ export default {
 
   data() {
     return {
-      mobileNavigation: window.matchMedia(screen && "(max-width:600x)").matches,
+      mobileNavigation: window.matchMedia(screen && "(max-width:650)").matches,
     };
   },
   created() {
@@ -34,7 +34,7 @@ export default {
   methods: {
     checkMobileNavigation() {
       this.mobileNavigation = window.matchMedia(
-        screen && "(max-width:600px)"
+        screen && "(max-width:650px)"
       ).matches;
     },
   },

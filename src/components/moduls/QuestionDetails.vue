@@ -3,7 +3,15 @@
     <h3>
       {{ this.actualQuestion.question }}
     </h3>
-    <p>{{ this.actualQuestion.description }}</p>
+    <ol class="description-list">
+      <li
+        v-for="(desc, index) in this.actualQuestion.description"
+        :key="index"
+        class="description-list-element"
+      >
+        {{ desc }}
+      </li>
+    </ol>
     <Button @click="showDetails" class="p-button-secondary">
       {{ keywordButtonText }}
     </Button>
@@ -57,6 +65,20 @@ export default {
   width: 80%;
   margin: 1rem auto;
   border: 1px solid var(--font-color);
+
+  .description-list {
+    width: 75%;
+    margin: 1rem auto;
+  }
+  @media screen and (max-width: 600px) {
+    .description-list {
+      width: 95%;
+    }
+  }
+  .description-list-element {
+    text-align: left;
+  }
+
   .p-button-secondary {
     background-color: var(--font-color);
   }

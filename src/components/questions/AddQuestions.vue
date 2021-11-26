@@ -4,6 +4,7 @@
       class="question-form"
       v-if="this.$store.state.user.displayName !== null"
     >
+      <i class="pi pi-question-circle"></i>
       <label for="module">Modul: </label>
       <Dropdown
         v-model="selectedModule"
@@ -21,13 +22,27 @@
         aria-describedby="username1-help"
       />
 
-      <label for="description">Beschreibung: </label>
-      <textarea
-        v-model="description"
-        id="description"
-        class="description"
-        type="text"
-      />
+      <div
+        class="description-wrapper"
+        v-for="index in amoutOfDescriptions"
+        :key="index"
+        :keyword="'description' + index"
+      >
+        <label for="keyword">Beschreibung: </label>
+        <div class="description-line">
+          <InputText
+            v-model="description[index - 1]"
+            id="description"
+            type="text"
+          />
+          <Button @click="addDescription">
+            <i class="pi pi-plus-circle" size="2rem"></i>
+          </Button>
+          <Button @click="removeDescription">
+            <i class="pi pi-minus-circle" size="2rem"></i>
+          </Button>
+        </div>
+      </div>
 
       <div
         class="keyword-wrapper"
@@ -44,7 +59,7 @@
         <Button @click="addKeyword">
           <i class="pi pi-plus-circle" size="2rem"></i>
         </Button>
-        <Button @click="removeKeyword">
+        <Button @click="removeKeyword" class="m-l">
           <i class="pi pi-minus-circle" size="2rem"></i>
         </Button>
       </div>
@@ -88,12 +103,14 @@ export default {
   data() {
     return {
       amoutOfKeywords: 1,
+      amoutOfDescriptions: 1,
       question: "",
-      description: "",
+
       displayName: "",
       semesterOptions: null,
       selectedModule: null,
       keyword: [],
+      description: [],
     };
   },
   created() {
@@ -108,6 +125,16 @@ export default {
     removeKeyword() {
       return this.amoutOfKeywords > 1
         ? this.amoutOfKeywords-- && this.keyword.pop()
+        : this.amoutOfKeywords;
+    },
+    addDescription() {
+      this.amoutOfDescriptions++;
+      this.description.push();
+      console.log(this.$store.state.user.displayName);
+    },
+    removeDescription() {
+      return this.amoutOfDescriptions > 1
+        ? this.amoutOfDescriptions-- && this.description.pop()
         : this.amoutOfKeywords;
     },
     setDisplayName() {
@@ -159,39 +186,67 @@ export default {
 
 <style lang="scss" scoped>
 .question-wrapper {
+  position: relative;
   min-height: 10rem;
   width: 100%;
   padding-right: 0.5rem;
   padding-bottom: 2rem;
   margin: 0 auto;
+  .pi-question-circle {
+    position: absolute;
+    top: -2rem;
+    right: 1rem;
+    z-index: 10;
+  }
   .question-form {
     color: var(--font-color);
     display: grid;
     grid-template-columns: 1fr 3fr;
     margin-bottom: 2rem;
-    .description {
-      height: 10em;
-    }
+
     .keyword-wrapper {
       grid-column: 1/3;
       display: grid;
       grid-template-columns: 1fr 3fr;
     }
+    .description-wrapper {
+      grid-column: 1/3;
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+
+      .description-line {
+        display: grid;
+        grid-template-columns: 1fr 3rem 3rem;
+        grid-column-gap: 0.5rem;
+        width: 100%;
+      }
+      Button {
+        width: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .p-inputtext {
+        width: 100%;
+      }
+    }
   }
+
   label {
     display: flex;
     align-items: center;
     justify-content: center;
   }
+  .m-l {
+    margin-left: 0.5rem;
+  }
   Button {
     background-color: var(--font-color);
   }
-  Button + Button {
-    margin-left: 1.5rem;
-  }
+
   .p-button:hover {
-    color: var(--white-color);
-    background-color: var(--font-color);
+    color: var(--font-color);
+    background-color: var(--white-color);
   }
 }
 
