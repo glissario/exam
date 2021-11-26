@@ -22,7 +22,12 @@
       />
 
       <label for="description">Beschreibung: </label>
-      <InputText v-model="description" id="description" type="text" />
+      <textarea
+        v-model="description"
+        id="description"
+        class="description"
+        type="text"
+      />
 
       <div
         class="keyword-wrapper"
@@ -164,7 +169,9 @@ export default {
     display: grid;
     grid-template-columns: 1fr 3fr;
     margin-bottom: 2rem;
-
+    .description {
+      height: 10em;
+    }
     .keyword-wrapper {
       grid-column: 1/3;
       display: grid;
