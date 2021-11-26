@@ -106,9 +106,6 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       requiresAuth: true,
     },
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/AddQuestionView.vue"),
   },
@@ -124,6 +121,13 @@ const routes: Array<RouteRecordRaw> = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/LiteratureView.vue"),
   },
+  {
+    path: "/manage",
+    name: "Manage",
+    meta: {},
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/ManageQuestions.vue"),
+  },
 ];
 
 const router = createRouter({
@@ -133,7 +137,6 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const isUserLoggedIn = store.state.user;
-
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     if (isUserLoggedIn == null) {
       return next({ name: "Login" });
