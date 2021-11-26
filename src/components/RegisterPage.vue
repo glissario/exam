@@ -1,44 +1,46 @@
 <template>
-  <div class="register-form">
-    <div class="input-email">
-      <InputText
-        v-model="login"
-        type="email"
-        pattern="true"
-        placeholder="isba-E-Mail-Adresse"
-        :class="invalidLogin ? 'p-invalid' : null"
-      />
-      <small v-if="invalidLogin" id="username2-help" class="p-error"
-        >E-Mail ist keine isba-Mailadresse</small
-      >
-    </div>
-    <Password
-      v-model="password"
-      style="password"
-      :inputClass="
-        invalidPassword ? 'input-password p-invalid' : 'input-password'
-      "
-      placeholder="Enter password"
-    />
-    <div class="input-password">
+  <section>
+    <div class="register-form">
+      <div class="input-email">
+        <InputText
+          v-model="login"
+          type="email"
+          pattern="true"
+          placeholder="isba-E-Mail-Adresse"
+          :class="invalidLogin ? 'p-invalid' : null"
+        />
+        <small v-if="invalidLogin" id="username2-help" class="p-error"
+          >E-Mail ist keine isba-Mailadresse</small
+        >
+      </div>
       <Password
-        v-model="passwordConfirmation"
+        v-model="password"
         style="password"
         :inputClass="
           invalidPassword ? 'input-password p-invalid' : 'input-password'
         "
-        :feedback="false"
-        placeholder="Confirm password"
+        placeholder="Enter password"
       />
-      <small v-if="invalidPassword" id="username2-help" class="p-error"
-        >Passwörter stimmen nicht überein</small
-      >
+      <div class="input-password">
+        <Password
+          v-model="passwordConfirmation"
+          style="password"
+          :inputClass="
+            invalidPassword ? 'input-password p-invalid' : 'input-password'
+          "
+          :feedback="false"
+          placeholder="Confirm password"
+        />
+        <small v-if="invalidPassword" id="username2-help" class="p-error"
+          >Passwörter stimmen nicht überein</small
+        >
+      </div>
+      <Button @click="registerUser" class="p-button-outlined">
+        {{ validRegistration }}
+      </Button>
     </div>
-    <Button @click="registerUser" class="p-button-outlined">
-      {{ validRegistration }}
-    </Button>
-  </div>
-  <Button @click="routeToLogin" class="p-button-outlined"> Zum Login </Button>
+    <Button @click="routeToLogin" class="p-button-outlined"> Zum Login </Button>
+  </section>
 </template>
 
 <script>

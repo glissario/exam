@@ -1,27 +1,29 @@
 <template>
-  <div class="login-form">
-    <InputText v-model="login" placeholder="E-Mail" />
-    <Password
-      @keyup.enter="checkLogin"
-      v-model="password"
-      class="pw-wrapper"
-      :feedback="false"
-      placeholder="Enter password"
-    />
-    <small v-if="showError" id="username2-help" class="p-error"
-      >falsches Passwort</small
-    >
-    <div class="pw-wrapper">
-      <Button @click="resetPw" class="reset-pw p-button-outlined"
-        >neues Passwort</Button
+  <section>
+    <div class="login-form">
+      <InputText v-model="login" placeholder="E-Mail" />
+      <Password
+        @keyup.enter="checkLogin"
+        v-model="password"
+        class="pw-wrapper"
+        :feedback="false"
+        placeholder="Enter password"
+      />
+      <small v-if="showError" id="username2-help" class="p-error"
+        >falsches Passwort</small
       >
+      <div class="pw-wrapper">
+        <Button @click="resetPw" class="reset-pw p-button-outlined"
+          >neues Passwort</Button
+        >
 
-      <Button @click="checkLogin" class="p-button-outlined"> Login </Button>
+        <Button @click="checkLogin" class="p-button-outlined"> Login </Button>
+      </div>
     </div>
-  </div>
-  <Button @click="routeToRegister" class="p-button-outlined p-blue">
-    Zur Registrierung
-  </Button>
+    <Button @click="routeToRegister" class="p-button-outlined p-blue">
+      Zur Registrierung
+    </Button>
+  </section>
 </template>
 
 <script>

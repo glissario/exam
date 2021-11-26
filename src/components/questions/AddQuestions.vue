@@ -1,10 +1,29 @@
 <template>
   <div class="question-wrapper">
+    <section
+      @click="openPopup = !openPopup"
+      class="help-popup"
+      v-if="openPopup"
+    >
+      <h2>Was zu beachten ist:</h2>
+      <ol>
+        <li>Jedes Feld ist auszufüllen, um die Frage speichern zu können</li>
+        <li>
+          Es können beliebig viele Beschreibungen der Aufgabe hinzugefügt werden
+        </li>
+        <li>
+          Gleiches gilt für die Schlüsselwörter - diese sind später suchbar
+        </li>
+      </ol>
+    </section>
     <form
       class="question-form"
       v-if="this.$store.state.user.displayName !== null"
     >
-      <i class="pi pi-question-circle"></i>
+      <i
+        @click="openPopup = !openPopup"
+        :class="openPopup ? 'pi pi-times-circle' : 'pi pi-question-circle'"
+      ></i>
       <label for="module">Modul: </label>
       <Dropdown
         v-model="selectedModule"
@@ -28,7 +47,7 @@
         :key="index"
         :keyword="'description' + index"
       >
-        <label for="keyword">Beschreibung: </label>
+        <label for="description">{{ index }}. Beschreibung </label>
         <div class="description-line">
           <InputText
             v-model="description[index - 1]"
@@ -50,18 +69,16 @@
         :key="index"
         :keyword="'keyword' + index"
       >
-        <label for="keyword">Schlüsselwort: </label>
-        <InputText v-model="keyword[index - 1]" id="keyword" type="text" />
-      </div>
-
-      <label for="keyword">neues Schlüsselwort? </label>
-      <div>
-        <Button @click="addKeyword">
-          <i class="pi pi-plus-circle" size="2rem"></i>
-        </Button>
-        <Button @click="removeKeyword" class="m-l">
-          <i class="pi pi-minus-circle" size="2rem"></i>
-        </Button>
+        <label for="keyword">{{ index + ". Schlüsselwort" }} </label>
+        <div class="keyword-line">
+          <InputText v-model="keyword[index - 1]" id="keyword" type="text" />
+          <Button @click="addKeyword">
+            <i class="pi pi-plus-circle" size="2rem"></i>
+          </Button>
+          <Button @click="removeKeyword">
+            <i class="pi pi-minus-circle" size="2rem"></i>
+          </Button>
+        </div>
       </div>
     </form>
     <Button
@@ -105,12 +122,12 @@ export default {
       amoutOfKeywords: 1,
       amoutOfDescriptions: 1,
       question: "",
-
       displayName: "",
       semesterOptions: null,
       selectedModule: null,
       keyword: [],
       description: [],
+      openPopup: false,
     };
   },
   created() {
@@ -192,7 +209,8 @@ export default {
   padding-right: 0.5rem;
   padding-bottom: 2rem;
   margin: 0 auto;
-  .pi-question-circle {
+  .pi-question-circle,
+  .pi-times-circle {
     position: absolute;
     top: -2rem;
     right: 1rem;
@@ -230,6 +248,33 @@ export default {
         width: 100%;
       }
     }
+    .keyword-wrapper {
+      .keyword-line {
+        display: grid;
+        grid-template-columns: 1fr 3rem 3rem;
+        grid-column-gap: 0.5rem;
+        width: 100%;
+      }
+      .p-inputtext {
+        width: 100%;
+      }
+    }
+  }
+  .help-popup {
+    position: absolute;
+    color: white;
+    background-color: var(--background-color);
+    opacity: 0.8;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    text-align: left;
+
+    z-index: 2;
   }
 
   label {
