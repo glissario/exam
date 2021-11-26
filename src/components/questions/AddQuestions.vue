@@ -54,10 +54,10 @@
             id="description"
             type="text"
           />
-          <Button @click="addDescription">
+          <Button v-if="index == '1'" @click="addDescription">
             <i class="pi pi-plus-circle" size="2rem"></i>
           </Button>
-          <Button @click="removeDescription">
+          <Button v-if="index == '1'" @click="removeDescription">
             <i class="pi pi-minus-circle" size="2rem"></i>
           </Button>
         </div>
@@ -72,10 +72,10 @@
         <label for="keyword">{{ index + ". Schlüsselwort" }} </label>
         <div class="keyword-line">
           <InputText v-model="keyword[index - 1]" id="keyword" type="text" />
-          <Button @click="addKeyword">
+          <Button v-if="index == '1'" @click="addKeyword">
             <i class="pi pi-plus-circle" size="2rem"></i>
           </Button>
-          <Button @click="removeKeyword">
+          <Button v-if="index == '1'" @click="removeKeyword">
             <i class="pi pi-minus-circle" size="2rem"></i>
           </Button>
         </div>

@@ -61,7 +61,11 @@ export default {
 .question-list-wrapper {
   color: #300044;
   min-height: 10rem;
-  width: 100%;
+  width: 80%;
+  h2 {
+    text-align: center;
+    width: 100%;
+  }
   .list-wrapper {
     width: 100%;
     display: flex;

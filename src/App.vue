@@ -59,7 +59,7 @@ img {
 @media screen and (max-width: 650px) {
   html {
     h2 {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
     }
     label {
       font-size: 0.6rem;

@@ -65,6 +65,14 @@ export default {
   width: 80%;
   margin: 1rem auto;
   border: 1px solid var(--font-color);
+  h3 {
+    hyphens: auto;
+  }
+  @media screen and (max-width: 600px) {
+    h3 {
+      font-size: 1.1rem;
+    }
+  }
 
   .description-list {
     width: 75%;
