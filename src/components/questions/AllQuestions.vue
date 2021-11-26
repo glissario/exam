@@ -2,17 +2,20 @@
   <h2>All Questions</h2>
   <ul>
     <li v-for="(question, index) in allQuestions" :key="index">
-      {{ question.question }}
+      {{ question }}
+      <QuestionDetails :question="question" />
     </li>
   </ul>
 </template>
 
 <script>
-import { collection, getDocs, listCollections } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import firestore from "@/firestore.js";
 import moduls from "@/components/moduls/modulePlan.json";
+import QuestionDetails from "@/components/moduls/QuestionDetails.vue";
 
 export default {
+  components: { QuestionDetails },
   data() {
     return {
       allQuestions: [],

@@ -24,22 +24,34 @@
       <div></div>
       <p>{{ "von " + actualQuestion.author }}</p>
     </div>
+    <InputText
+      v-if="this.$store.state.user !== null"
+      v-model="notes"
+      id="nodes"
+      type="text"
+    />
   </div>
 </template>
 
 <script>
 import Button from "primevue/button";
+import InputText from "primevue/inputtext";
 
 export default {
-  components: { Button },
+  components: { Button, InputText },
   data() {
     return {
       showKeys: false,
     };
   },
+  mounted() {
+    console.log("das kommt an" + this.question);
+  },
   computed: {
     actualQuestion() {
-      return this.$store.state.actualQuestion;
+      return this.question == null
+        ? this.$store.state.actualQuestion
+        : this.question;
     },
     keywordButtonText() {
       return this.showKeys
@@ -108,6 +120,9 @@ export default {
       color: var(--third-color);
       width: 25%;
     }
+  }
+  .p-inputtext {
+    width: 80%;
   }
 }
 </style>
