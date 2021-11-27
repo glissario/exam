@@ -54,7 +54,7 @@ export default {
         .then((userCredential) => {
           // Signed in
           this.$store.state.user = userCredential.user;
-          console.log(this.$store.state.user.emailVerified);
+
           if (this.$store.state.user.emailVerified) {
             this.$router.push({ name: "Moduls" });
           } else {
@@ -62,7 +62,6 @@ export default {
           }
         })
         .catch((error) => {
-          console.log("test");
           this.showError = true;
           setTimeout(() => (this.showError = false), 2500);
         });

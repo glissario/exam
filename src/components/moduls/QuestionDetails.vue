@@ -1,7 +1,8 @@
 <template>
   <div class="question-detail-wrapper" v-if="actualQuestion">
+    <i class="pi pi-times-circle" @click="closeDetails"></i>
     <h3>
-      {{ this.actualQuestion.question }}
+      {{ "this.actualQuestion.question" }}
     </h3>
     <ol class="description-list">
       <li
@@ -24,34 +25,33 @@
       <div></div>
       <p>{{ "von " + actualQuestion.author }}</p>
     </div>
-    <InputText
+    <!--InputText
       v-if="this.$store.state.user !== null"
       v-model="notes"
       id="nodes"
       type="text"
-    />
+    /-->
   </div>
 </template>
 
 <script>
 import Button from "primevue/button";
-import InputText from "primevue/inputtext";
+//import InputText from "primevue/inputtext";
 
 export default {
-  components: { Button, InputText },
+  components: { Button /*, InputText*/ },
   data() {
     return {
       showKeys: false,
     };
   },
   mounted() {
-    console.log("das kommt an" + this.question);
+    //console.log("das kommt an" + this.question);
+    console.log(this.question);
   },
   computed: {
     actualQuestion() {
-      return this.question == null
-        ? this.$store.state.actualQuestion
-        : this.question;
+      return this.$store.state.actualQuestion;
     },
     keywordButtonText() {
       return this.showKeys
@@ -67,16 +67,25 @@ export default {
     showDetails() {
       this.showKeys = !this.showKeys;
     },
+    closeDetails() {
+      this.$store.state.actualQuestion = null;
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .question-detail-wrapper {
+  position: relative;
   color: var(--font-color);
   width: 80%;
   margin: 1rem auto;
   border: 1px solid var(--font-color);
+  .pi-times-circle {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
   h3 {
     hyphens: auto;
   }

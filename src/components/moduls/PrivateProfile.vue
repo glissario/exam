@@ -19,11 +19,7 @@
     >
     <Button class="p-button-outlined">{{ verifiedButtonText }}</Button>
   </div>
-  <div v-if="false">
-    <button @click="emailVerification">verify</button>
-    <button @click="resetPw">reset pw</button>
-    <button @click="getUser">view user</button>
-  </div>
+
   <div v-if="this.$store.state.user.emailVerified" class="profile-wrapper">
     <h2>Deine hinterlegten Daten</h2>
     <div class="profil-data-wrapper">
@@ -106,9 +102,7 @@ export default {
         setTimeout(() => (this.invalidUserName = false), 2500);
       }
     },
-    getUser() {
-      console.log(this.$store.state.user);
-    },
+
     emailVerification() {
       sendEmailVerification(this.$store.state.user);
     },

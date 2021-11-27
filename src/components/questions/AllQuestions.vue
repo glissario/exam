@@ -1,21 +1,27 @@
 <template>
   <h2>All Questions</h2>
-  <ul>
-    <li v-for="(question, index) in allQuestions" :key="index">
-      {{ question }}
-      <QuestionDetails :question="question" />
-    </li>
-  </ul>
+
+  <Button
+    @click="routeToQuestions(modul)"
+    v-for="(modul, index) in allQuestions"
+    :key="index"
+    class="p-button-outlined"
+  >
+    {{ modul.question }}
+  </Button>
+
+  <QuestionDetails v-if="this.$store.state.actualQuestion" />
 </template>
 
 <script>
 import { collection, getDocs } from "firebase/firestore";
+import Button from "primevue/button";
 import firestore from "@/firestore.js";
 import moduls from "@/components/moduls/modulePlan.json";
 import QuestionDetails from "@/components/moduls/QuestionDetails.vue";
 
 export default {
-  components: { QuestionDetails },
+  components: { QuestionDetails, Button },
   data() {
     return {
       allQuestions: [],
@@ -23,13 +29,12 @@ export default {
     };
   },
   async created() {
-    console.log(moduls.root);
     for (let i = 0; i < moduls.root.length; i++) {
       for (let j = 0; j < moduls.root[i].children.length; j++) {
         this.allModuls.push(moduls.root[i].children[j].label);
       }
     }
-    console.log(this.allModuls[0]);
+
     for (let i = 0; i < this.allModuls.length; i++) {
       const docSnap = await getDocs(
         collection(firestore, "moduls", this.allModuls[i], "questions")
@@ -39,7 +44,11 @@ export default {
         this.allQuestions.push(doc.data());
       });
     }
-    console.log(this.allQuestions);
+  },
+  methods: {
+    routeToQuestions(modul) {
+      this.$store.state.actualQuestion = modul;
+    },
   },
 };
 </script>

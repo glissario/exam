@@ -50,7 +50,7 @@ export default {
       this.$router.push({
         name: "QuestionDetails",
         params: {
-          question: question.question,
+          question: question,
         },
       });
     },

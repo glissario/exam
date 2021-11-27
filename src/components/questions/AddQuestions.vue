@@ -137,7 +137,6 @@ export default {
     addKeyword() {
       this.amoutOfKeywords++;
       this.keyword.push();
-      console.log(this.$store.state.user.displayName);
     },
     removeKeyword() {
       return this.amoutOfKeywords > 1
@@ -147,7 +146,6 @@ export default {
     addDescription() {
       this.amoutOfDescriptions++;
       this.description.push();
-      console.log(this.$store.state.user.displayName);
     },
     removeDescription() {
       return this.amoutOfDescriptions > 1
@@ -155,7 +153,6 @@ export default {
         : this.amoutOfKeywords;
     },
     setDisplayName() {
-      console.log(this.$store.state.user.displayName);
       if (this.displayName.length > 3) {
         const auth = getAuth();
 
@@ -173,10 +170,6 @@ export default {
       }
     },
     async submitQuestion() {
-      console.log(this.keyword);
-      for (let i = 0; i < this.amoutOfKeywords; i++) {
-        console.log("test");
-      }
       await setDoc(
         doc(
           firestore,
