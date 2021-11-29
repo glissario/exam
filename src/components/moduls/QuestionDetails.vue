@@ -2,10 +2,10 @@
   <div class="question-detail-wrapper" v-if="actualQuestion">
     <section class="editor-popup" v-if="openPopup">
       <i class="pi pi-times-circle" @click="openPopup = !openPopup"></i>
+      <i class="pi pi-save" v-if="noteValue !== null" @click="saveNotes"></i>
       <Editor v-model="noteValue"> </Editor>
     </section>
     <i class="pi pi-times-circle" @click="closeDetails"></i>
-    <i class="pi pi-save" v-if="noteValue !== null" @click="saveNotes"></i>
     <i
       v-if="this.$store.state.user !== null"
       class="pi pi-pencil"
@@ -130,7 +130,7 @@ export default {
   .pi-pencil {
     position: absolute;
     top: 1rem;
-    right: 5rem;
+    right: 3rem;
     cursor: pointer;
   }
   .pi-save {
