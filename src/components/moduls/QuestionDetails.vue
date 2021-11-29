@@ -1,8 +1,18 @@
 <template>
   <div class="question-detail-wrapper" v-if="actualQuestion">
+    <section class="editor-popup" v-if="openPopup">
+      <i class="pi pi-times-circle" @click="openPopup = !openPopup"></i>
+      <Editor v-model="noteValue"> </Editor>
+    </section>
     <i class="pi pi-times-circle" @click="closeDetails"></i>
+    <i class="pi pi-save" v-if="noteValue !== null" @click="saveNotes"></i>
+    <i
+      v-if="this.$store.state.user !== null"
+      class="pi pi-pencil"
+      @click="openPopup = !openPopup"
+    ></i>
     <h3>
-      {{ "this.actualQuestion.question" }}
+      {{ actualQuestion.question }}
     </h3>
     <ol class="description-list">
       <li
@@ -25,30 +35,33 @@
       <div></div>
       <p>{{ "von " + actualQuestion.author }}</p>
     </div>
-    <!--InputText
-      v-if="this.$store.state.user !== null"
-      v-model="notes"
-      id="nodes"
-      type="text"
-    /-->
+    <div v-if="noteValue !== null" class="notes">
+      <i class="pi pi-times-circle"></i>
+      <h3>Eigene Notizen</h3>
+
+      <span v-html="noteValue"></span>
+    </div>
   </div>
 </template>
 
 <script>
 import Button from "primevue/button";
+import Editor from "primevue/editor";
+
+import { collection, addDoc, getDoc, doc, setDoc } from "firebase/firestore";
+import firestore from "@/firestore.js";
 //import InputText from "primevue/inputtext";
 
 export default {
-  components: { Button /*, InputText*/ },
+  components: { Button, Editor /*, InputText*/ },
   data() {
     return {
       showKeys: false,
+      openPopup: false,
+      noteValue: null,
     };
   },
-  mounted() {
-    //console.log("das kommt an" + this.question);
-    console.log(this.question);
-  },
+
   computed: {
     actualQuestion() {
       return this.$store.state.actualQuestion;
@@ -63,12 +76,47 @@ export default {
   props: {
     question: null,
   },
+  async created() {
+    const docSnap = await getDoc(
+      doc(
+        firestore,
+        "moduls",
+        this.$store.state.actualModule.label,
+        "questions",
+        this.actualQuestion.question,
+        "userNotes",
+        this.$store.state.user.uid
+      )
+    );
+    if (docSnap.exists()) {
+      this.noteValue = docSnap.data().note;
+    } else {
+      // doc.data() will be undefined in this case
+    }
+  },
+
   methods: {
     showDetails() {
       this.showKeys = !this.showKeys;
     },
     closeDetails() {
       this.$store.state.actualQuestion = null;
+    },
+    async saveNotes() {
+      await setDoc(
+        doc(
+          firestore,
+          "moduls",
+          this.$store.state.actualModule.label,
+          "questions",
+          this.actualQuestion.question,
+          "userNotes",
+          this.$store.state.user.uid
+        ),
+        {
+          note: this.noteValue,
+        }
+      );
     },
   },
 };
@@ -85,9 +133,23 @@ export default {
     position: absolute;
     top: 1rem;
     right: 1rem;
+    cursor: pointer;
+  }
+  .pi-pencil {
+    position: absolute;
+    top: 1rem;
+    right: 5rem;
+    cursor: pointer;
+  }
+  .pi-save {
+    position: absolute;
+    top: 1rem;
+    right: 3rem;
+    cursor: pointer;
   }
   h3 {
     hyphens: auto;
+    padding-top: 0.5rem;
   }
   @media screen and (max-width: 600px) {
     h3 {
@@ -98,6 +160,7 @@ export default {
   .description-list {
     width: 75%;
     margin: 1rem auto;
+    padding: 0;
   }
   @media screen and (max-width: 600px) {
     .description-list {
@@ -132,6 +195,30 @@ export default {
   }
   .p-inputtext {
     width: 80%;
+  }
+  .editor-popup {
+    position: absolute;
+    color: var(--Font-color);
+    background-color: var(--white-color);
+    opacity: 0.9;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    text-align: left;
+
+    z-index: 2;
+  }
+  .notes {
+    h3 {
+      text-align: center;
+    }
+    width: 75%;
+    margin: 0 auto;
+    text-align: left;
   }
 }
 </style>

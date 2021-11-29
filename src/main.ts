@@ -8,6 +8,7 @@ import TreeSelect from "primevue/treeselect";
 import InputText from "primevue/inputtext";
 import Password from "primevue/password";
 import Dropdown from "primevue/dropdown";
+import Editor from "primevue/editor";
 
 import "primevue/resources/themes/saga-blue/theme.css"; //theme
 import "primevue/resources/primevue.min.css"; //core css
@@ -19,5 +20,6 @@ app.use(PrimeVue);
 app.component("MyButton", Button);
 app.component("TreeSelect", TreeSelect);
 app.component("InputText", InputText);
+app.component("Editor", Editor);
 app.use(store).use(router);
 app.mount("#app");
