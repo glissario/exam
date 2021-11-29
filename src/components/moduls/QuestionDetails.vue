@@ -3,7 +3,6 @@
     <section class="editor-popup" v-if="openPopup">
       <i class="pi pi-times-circle" @click="openPopup = !openPopup"></i>
       <i class="pi pi-save" v-if="noteValue !== null" @click="saveNotes"></i>
-      <Editor v-model="noteValue"> </Editor>
     </section>
     <i class="pi pi-times-circle" @click="closeDetails"></i>
     <i
@@ -38,14 +37,13 @@
 
 <script>
 import Button from "primevue/button";
-import Editor from "primevue/editor";
 
 import { collection, addDoc, getDoc, doc, setDoc } from "firebase/firestore";
 import firestore from "@/firestore.js";
 //import InputText from "primevue/inputtext";
 
 export default {
-  components: { Button, Editor /*, InputText*/ },
+  components: { Button /*, InputText*/ },
   data() {
     return {
       showKeys: false,

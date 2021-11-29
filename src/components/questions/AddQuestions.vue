@@ -41,7 +41,7 @@
         aria-describedby="username1-help"
       />
       <label for="description-text">Beschreibung </label>
-      <Editor v-model="descriptionText" />
+      <editor-content :editor="editor" v-model="descriptionText" />
       <!--div
         class="description-wrapper"
         v-for="index in amoutOfDescriptions"
@@ -115,10 +115,11 @@ import Dropdown from "primevue/dropdown";
 import moduls from "@/components/moduls/modulePlan.json";
 import InputText from "primevue/inputtext";
 import Button from "primevue/button";
-import Editor from "primevue/editor";
+import { Editor, EditorContent } from "@tiptap/vue-3";
+import StarterKit from "@tiptap/starter-kit";
 
 export default {
-  components: { InputText, Button, Dropdown, Editor },
+  components: { InputText, Button, Dropdown, EditorContent },
   data() {
     return {
       amoutOfKeywords: 1,
@@ -131,10 +132,17 @@ export default {
       description: [],
       descriptionText: "",
       openPopup: false,
+      editor: null,
     };
   },
   created() {
     this.semesterOptions = moduls.root;
+  },
+  mounted() {
+    this.editor = new Editor({
+      content: "Beschreibe die Frage",
+      extensions: [StarterKit],
+    });
   },
   methods: {
     addKeyword() {
@@ -218,8 +226,6 @@ export default {
     grid-template-columns: 1fr 3fr;
     margin-bottom: 2rem;
     .p-editor-container {
-      height: 10rem;
-      margin-bottom: 2.5rem;
     }
     .description-wrapper {
       grid-column: 1/3;
