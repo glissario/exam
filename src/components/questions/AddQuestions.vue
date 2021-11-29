@@ -41,7 +41,11 @@
         aria-describedby="username1-help"
       />
       <label for="description-text">Beschreibung </label>
-      <editor-content :editor="editor" v-model="descriptionText" />
+      <editor-content
+        class="editor"
+        :editor="editor"
+        v-model="descriptionText"
+      />
       <!--div
         class="description-wrapper"
         v-for="index in amoutOfDescriptions"
@@ -225,7 +229,20 @@ export default {
     display: grid;
     grid-template-columns: 1fr 3fr;
     margin-bottom: 2rem;
-    .p-editor-container {
+    .editor {
+      background-color: white;
+      border: 1px solid RGB(206, 212, 218);
+      text-align: left;
+      padding: 0;
+      div {
+        p {
+          margin: 5rem;
+          padding: 1rem;
+        }
+      }
+    }
+    .editor:hover {
+      border-color: #2196f3;
     }
     .description-wrapper {
       grid-column: 1/3;
