@@ -208,6 +208,7 @@ export default {
 
 @media screen and (max-width: 600px) {
   .content-wrapper {
+    width: 80%;
     .action-wrapper {
       flex-direction: column;
       .keyword-search {

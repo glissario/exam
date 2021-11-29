@@ -14,15 +14,7 @@
     <h3>
       {{ actualQuestion.question }}
     </h3>
-    <ol class="description-list">
-      <li
-        v-for="(desc, index) in this.actualQuestion.description"
-        :key="index"
-        class="description-list-element"
-      >
-        {{ desc }}
-      </li>
-    </ol>
+    <span v-html="actualQuestion.description"></span>
     <Button @click="showDetails" class="p-button-secondary">
       {{ keywordButtonText }}
     </Button>
@@ -35,7 +27,7 @@
       <div></div>
       <p>{{ "von " + actualQuestion.author }}</p>
     </div>
-    <div v-if="noteValue !== null" class="notes">
+    <div v-if="noteValue !== ''" class="notes">
       <i class="pi pi-times-circle"></i>
       <h3>Eigene Notizen</h3>
 
@@ -58,7 +50,7 @@ export default {
     return {
       showKeys: false,
       openPopup: false,
-      noteValue: null,
+      noteValue: "",
     };
   },
 
@@ -154,6 +146,7 @@ export default {
   @media screen and (max-width: 600px) {
     h3 {
       font-size: 1.1rem;
+      padding-top: 1rem;
     }
   }
 

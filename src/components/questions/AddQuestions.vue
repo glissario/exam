@@ -40,8 +40,9 @@
         type="text"
         aria-describedby="username1-help"
       />
-
-      <div
+      <label for="description-text">Beschreibung </label>
+      <Editor v-model="descriptionText" />
+      <!--div
         class="description-wrapper"
         v-for="index in amoutOfDescriptions"
         :key="index"
@@ -61,7 +62,7 @@
             <i class="pi pi-minus-circle" size="2rem"></i>
           </Button>
         </div>
-      </div>
+      </div-->
 
       <div
         class="keyword-wrapper"
@@ -114,9 +115,10 @@ import Dropdown from "primevue/dropdown";
 import moduls from "@/components/moduls/modulePlan.json";
 import InputText from "primevue/inputtext";
 import Button from "primevue/button";
+import Editor from "primevue/editor";
 
 export default {
-  components: { InputText, Button, Dropdown },
+  components: { InputText, Button, Dropdown, Editor },
   data() {
     return {
       amoutOfKeywords: 1,
@@ -127,6 +129,7 @@ export default {
       selectedModule: null,
       keyword: [],
       description: [],
+      descriptionText: "",
       openPopup: false,
     };
   },
@@ -181,7 +184,7 @@ export default {
         {
           modul: this.selectedModule.label,
           question: this.question,
-          description: this.description,
+          description: this.descriptionText,
           keyword: this.keyword,
           author: this.$store.state.user.displayName,
         }
@@ -214,11 +217,9 @@ export default {
     display: grid;
     grid-template-columns: 1fr 3fr;
     margin-bottom: 2rem;
-
-    .keyword-wrapper {
-      grid-column: 1/3;
-      display: grid;
-      grid-template-columns: 1fr 3fr;
+    .p-editor-container {
+      height: 10rem;
+      margin-bottom: 2.5rem;
     }
     .description-wrapper {
       grid-column: 1/3;
@@ -242,6 +243,9 @@ export default {
       }
     }
     .keyword-wrapper {
+      grid-column: 1/3;
+      display: grid;
+      grid-template-columns: 1fr 3fr;
       .keyword-line {
         display: grid;
         grid-template-columns: 1fr 3rem 3rem;
