@@ -18,7 +18,7 @@ import { collection, getDocs } from "firebase/firestore";
 import Button from "primevue/button";
 import firestore from "@/firestore.js";
 import moduls from "@/components/moduls/modulePlan.json";
-import QuestionDetails from "@/components/moduls/QuestionDetails.vue";
+import QuestionDetails from "@/components/questions/QuestionDetails.vue";
 
 export default {
   components: { QuestionDetails, Button },

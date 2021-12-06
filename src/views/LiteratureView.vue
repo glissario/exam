@@ -1,11 +1,10 @@
 <template>
-  <h2>Literatur</h2>
+  <LiteraturDetails />
 </template>
 
-<style scoped>
-h2 {
-  min-height: 10rem;
-  width: 100%;
-  margin: 0;
-}
-</style>
+<script>
+import LiteraturDetails from "@/components/literature/LiteratureDetails.vue";
+export default {
+  components: { LiteraturDetails },
+};
+</script>

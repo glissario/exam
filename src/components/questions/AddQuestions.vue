@@ -41,11 +41,8 @@
         aria-describedby="username1-help"
       />
       <label for="description-text">Beschreibung </label>
-      <editor-content
-        class="editor"
-        :editor="editor"
-        v-model="descriptionText"
-      />
+
+      <editor-content class="editor" :editor="editor" />
       <!--div
         class="description-wrapper"
         v-for="index in amoutOfDescriptions"
@@ -144,7 +141,7 @@ export default {
   },
   mounted() {
     this.editor = new Editor({
-      content: "Beschreibe die Frage",
+      content: "",
       extensions: [StarterKit],
     });
   },
@@ -152,6 +149,11 @@ export default {
     addKeyword() {
       this.amoutOfKeywords++;
       this.keyword.push();
+    },
+    testIt() {
+      console.log(this.editor.options.element.firstChild.innerText);
+      this.editor.options.element.firstChild.innerText = "";
+      //this.editor.options.element.innerText = "";
     },
     removeKeyword() {
       return this.amoutOfKeywords > 1
@@ -196,14 +198,15 @@ export default {
         {
           modul: this.selectedModule.label,
           question: this.question,
-          description: this.descriptionText,
+          description: this.editor.getHTML(),
           keyword: this.keyword,
           author: this.$store.state.user.displayName,
         }
       );
       this.question = "";
-      this.description = "";
-      (this.amoutOfKeywords = 1), (this.keyword = []);
+      this.editor.options.element.firstChild.innerText = "";
+      this.amoutOfKeywords = 1;
+      this.keyword = [];
     },
   },
 };
@@ -233,12 +236,9 @@ export default {
       background-color: white;
       border: 1px solid RGB(206, 212, 218);
       text-align: left;
-      padding: 0;
-      div {
-        p {
-          margin: 5rem;
-          padding: 1rem;
-        }
+      margin: 0;
+      .ProseMirror p {
+        margin: 4rem;
       }
     }
     .editor:hover {

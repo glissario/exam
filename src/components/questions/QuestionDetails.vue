@@ -40,9 +40,10 @@ import Button from "primevue/button";
 
 import { collection, addDoc, getDoc, doc, setDoc } from "firebase/firestore";
 import firestore from "@/firestore.js";
+import { defineComponent } from "@vue/runtime-core";
 //import InputText from "primevue/inputtext";
 
-export default {
+export default defineComponent({
   components: { Button /*, InputText*/ },
   data() {
     return {
@@ -109,7 +110,7 @@ export default {
       );
     },
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

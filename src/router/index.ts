@@ -75,7 +75,7 @@ const routes: Array<RouteRecordRaw> = [
         },
         component: () =>
           import(
-            /* webpackChunkName: "about" */ "../components/moduls/QuestionOverview.vue"
+            /* webpackChunkName: "about" */ "../components/questions/QuestionOverview.vue"
           ),
         children: [
           {
@@ -84,7 +84,7 @@ const routes: Array<RouteRecordRaw> = [
             props: true,
             component: () =>
               import(
-                /* webpackChunkName: "about" */ "../components/moduls/QuestionDetails.vue"
+                /* webpackChunkName: "about" */ "../components/questions/QuestionDetails.vue"
               ),
           },
         ],
@@ -95,7 +95,7 @@ const routes: Array<RouteRecordRaw> = [
         props: true,
         component: () =>
           import(
-            /* webpackChunkName: "about" */ "../components/moduls/QuestionDetails.vue"
+            /* webpackChunkName: "about" */ "../components/questions/QuestionDetails.vue"
           ),
       },
     ],
