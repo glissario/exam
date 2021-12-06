@@ -106,7 +106,7 @@ export default defineComponent({
     top: 0;
     color: white;
     background-color: var(--background-color);
-    opacity: 0.8;
+    opacity: 0.9;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -126,6 +126,7 @@ export default defineComponent({
       width: 80%;
       .p-inputtext {
         width: 100%;
+        opacity: 1;
       }
     }
     .p-button {
