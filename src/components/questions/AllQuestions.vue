@@ -44,10 +44,12 @@ export default {
         this.allQuestions.push(doc.data());
       });
     }
+    return;
   },
   methods: {
     routeToQuestions(modul) {
       this.$store.state.actualQuestion = modul;
+      return;
     },
   },
 };

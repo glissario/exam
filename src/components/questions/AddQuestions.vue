@@ -108,7 +108,7 @@
 </template>
 
 <script>
-import { collection, addDoc, doc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { getAuth, updateProfile } from "firebase/auth";
 
 import firestore from "@/firestore.js";
@@ -286,7 +286,7 @@ export default {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: flex-start;
     text-align: left;
 
     z-index: 2;

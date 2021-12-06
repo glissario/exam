@@ -38,7 +38,7 @@
 <script>
 import Button from "primevue/button";
 
-import { collection, addDoc, getDoc, doc, setDoc } from "firebase/firestore";
+import { getDoc, doc, setDoc } from "firebase/firestore";
 import firestore from "@/firestore.js";
 import { defineComponent } from "@vue/runtime-core";
 //import InputText from "primevue/inputtext";
@@ -199,7 +199,7 @@ export default defineComponent({
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: flex-start;
     text-align: left;
 
     z-index: 2;
