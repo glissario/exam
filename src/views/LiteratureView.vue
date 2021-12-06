@@ -1,10 +1,10 @@
 <template>
-  <LiteraturDetails />
+  <LiteraturOverview />
 </template>
 
 <script>
-import LiteraturDetails from "@/components/literature/LiteratureDetails.vue";
+import LiteraturOverview from "@/components/literature/LiteratureOverview.vue";
 export default {
-  components: { LiteraturDetails },
+  components: { LiteraturOverview },
 };
 </script>

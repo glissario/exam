@@ -255,12 +255,7 @@ export default {
         grid-column-gap: 0.5rem;
         width: 100%;
       }
-      Button {
-        width: 3rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
+
       .p-inputtext {
         width: 100%;
       }
@@ -305,7 +300,7 @@ export default {
   .m-l {
     margin-left: 0.5rem;
   }
-  Button {
+  .p-button {
     background-color: var(--font-color);
   }
 
