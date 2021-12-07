@@ -77,7 +77,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .login-form {
   display: flex;
   align-items: center;
@@ -104,9 +104,10 @@ export default {
     justify-content: center;
   }
   .p-password {
-    border: 1px solid var(--third-color);
+    //border: 1px solid var(--third-color);
     width: 18rem;
   }
+
   .p-button {
     width: 18rem;
   }

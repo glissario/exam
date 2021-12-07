@@ -102,7 +102,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .register-form {
   display: flex;
   flex-direction: column;
@@ -135,7 +135,6 @@ export default {
     justify-content: center;
   }
   .p-password {
-    border: 1px solid var(--third-color);
     width: 18rem;
   }
   .p-button {
