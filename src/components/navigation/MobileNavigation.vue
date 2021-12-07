@@ -5,7 +5,7 @@
   >
     <ul class="nav-list">
       <router-link class="nav-element" :to="{ name: 'About' }"
-        >Über uns</router-link
+        >Das Projekt</router-link
       >
       <router-link class="nav-element" :to="{ name: 'Moduls' }"
         >Module einsehen</router-link

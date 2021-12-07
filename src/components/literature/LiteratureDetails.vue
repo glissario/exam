@@ -42,7 +42,6 @@ export default defineComponent({
     },
   },
   async created() {
-    console.log(this.author);
     const userVote = await getDoc(
       doc(firestore, "literature", this.title, "voting", this.author)
     );

@@ -1,7 +1,13 @@
 <template>
-  <h2>This is an about page</h2>
+  <AboutPage />
 </template>
 
+<script>
+import AboutPage from "@/components/about/AboutPage.vue";
+export default {
+  components: { AboutPage },
+};
+</script>
 <style scoped>
 h2 {
   min-height: 10rem;

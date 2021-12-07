@@ -8,12 +8,7 @@
       <h2>Was zu beachten ist:</h2>
       <ol>
         <li>Jedes Feld ist auszufüllen, um die Frage speichern zu können</li>
-        <li>
-          Es können beliebig viele Beschreibungen der Aufgabe hinzugefügt werden
-        </li>
-        <li>
-          Gleiches gilt für die Schlüsselwörter - diese sind später suchbar
-        </li>
+        <li>Gute Schlüsselwörter ermöglichen eine präzise Suche</li>
       </ol>
     </section>
     <form
@@ -43,28 +38,6 @@
       <label for="description-text">Beschreibung </label>
 
       <editor-content class="editor" :editor="editor" />
-      <!--div
-        class="description-wrapper"
-        v-for="index in amoutOfDescriptions"
-        :key="index"
-        :keyword="'description' + index"
-      >
-        <label for="description">{{ index }}. Beschreibung </label>
-        <div class="description-line">
-          <InputText
-            v-model="description[index - 1]"
-            id="description"
-            type="text"
-          />
-          <Button v-if="index == '1'" @click="addDescription">
-            <i class="pi pi-plus-circle" size="2rem"></i>
-          </Button>
-          <Button v-if="index == '1'" @click="removeDescription">
-            <i class="pi pi-minus-circle" size="2rem"></i>
-          </Button>
-        </div>
-      </div-->
-
       <div
         class="keyword-wrapper"
         v-for="index in amoutOfKeywords"
@@ -88,22 +61,6 @@
       @click="submitQuestion"
       >Absenden
     </Button>
-    <div v-if="this.$store.state.user.displayName === null">
-      <p>
-        Bei Einsicht der Fragen ist der Autor ersichtlich. Hierfür wird ein
-        Display-Name benötigt, welcher bei Dir aktuell nicht hinterlegt ist.
-        Sobald Du einen anlegst kannst Du Fragen speichern
-      </p>
-      <div>
-        <label for="description">Display-Name: </label>
-        <InputText v-model="displayName" id="displayName" type="text" />
-      </div>
-      <Button
-        v-if="this.$store.state.user.displayName === null"
-        @click="setDisplayName"
-        >Namen eintragen
-      </Button>
-    </div>
   </div>
 </template>
 
@@ -232,6 +189,7 @@ export default {
     display: grid;
     grid-template-columns: 1fr 3fr;
     margin-bottom: 2rem;
+
     .editor {
       background-color: white;
       border: 1px solid RGB(206, 212, 218);
@@ -244,22 +202,7 @@ export default {
     .editor:hover {
       border-color: #2196f3;
     }
-    .description-wrapper {
-      grid-column: 1/3;
-      display: grid;
-      grid-template-columns: 1fr 3fr;
 
-      .description-line {
-        display: grid;
-        grid-template-columns: 1fr 3rem 3rem;
-        grid-column-gap: 0.5rem;
-        width: 100%;
-      }
-
-      .p-inputtext {
-        width: 100%;
-      }
-    }
     .keyword-wrapper {
       grid-column: 1/3;
       display: grid;
@@ -272,9 +215,11 @@ export default {
       }
       .p-inputtext {
         width: 100%;
+        color: var(--font-color);
       }
     }
   }
+
   .help-popup {
     position: absolute;
     color: white;

@@ -4,7 +4,7 @@
     class="nav-wrapper"
   >
     <div v-if="this.$store.state.user.emailVerified">
-      <router-link :to="{ name: 'About' }">Über uns</router-link>
+      <router-link :to="{ name: 'About' }">Das Projekt</router-link>
       <router-link :to="{ name: 'Moduls' }">Module einsehen</router-link>
       <router-link :to="{ name: 'Questions' }">Fragen eingeben</router-link>
       <router-link :to="{ name: 'Literatur' }">Literatur</router-link>
