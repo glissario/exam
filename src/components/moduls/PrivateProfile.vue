@@ -3,7 +3,7 @@
     v-if="!this.$store.state.user.emailVerified"
     class="verification-wrapper"
   >
-    <div v-if="false">
+    <div>
       <label for="display-name">Display-Name: </label>
       <InputText
         @keyup.enter="setUserName"
@@ -17,7 +17,13 @@
     <small v-if="invalidUserName" id="username2-help" class="p-error"
       >zu kurzer Display-Name</small
     >
-    <Button class="p-button-outlined">{{ verifiedButtonText }}</Button>
+
+    <Button
+      @click="emailVerification"
+      class="p-button-outlined"
+      :disabled="displayNameIsSet"
+      >{{ verifiedButtonText }}</Button
+    >
   </div>
 
   <div v-if="this.$store.state.user.emailVerified" class="profile-wrapper">
@@ -48,7 +54,7 @@
           invalidPassword ? 'input-password p-invalid' : 'input-password'
         "
         :feedback="false"
-        placeholder="Confirm password"
+        placeholder="confirm password"
       />
     </div>
   </div>
@@ -77,6 +83,7 @@ export default {
       password: "",
       passwordConfirmation: "",
       invalidPassword: false,
+      displayNameIsSet: true,
     };
   },
   computed: {
@@ -90,13 +97,13 @@ export default {
     setUserName() {
       if (this.userName.length > 3) {
         const auth = getAuth();
-
         updateProfile(this.$store.state.user, {
           displayName: this.userName,
         }).catch((error) => {
           this.invalidUserName = true;
           setTimeout(() => (this.invalidUserName = false), 2500);
         });
+        this.displayNameIsSet = false;
       } else {
         this.invalidUserName = true;
         setTimeout(() => (this.invalidUserName = false), 2500);
@@ -105,6 +112,8 @@ export default {
 
     emailVerification() {
       sendEmailVerification(this.$store.state.user);
+      this.$store.state.user = null;
+      this.$router.push({ name: "Login" });
     },
     resetPw() {
       const auth = getAuth();

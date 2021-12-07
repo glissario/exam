@@ -74,11 +74,7 @@ export default {
       this.invalidLogin = false;
       this.invalidPassword = false;
 
-      if (
-        this.password === this.passwordConfirmation &&
-        "@stud.isba.studium.de" ===
-          this.login.substring(this.login.length - 21, this.login.length)
-      ) {
+      if (this.password === this.passwordConfirmation) {
         console.log("works");
 
         const auth = getAuth();
