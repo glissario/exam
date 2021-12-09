@@ -66,7 +66,6 @@ export default defineComponent({
     docSnap.forEach((doc) => {
       this.allLiterature.push(doc.data());
     });
-    console.log(this.allLiterature);
   },
   methods: {
     addLiterature() {
