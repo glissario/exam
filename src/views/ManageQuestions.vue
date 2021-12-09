@@ -1,14 +1,7 @@
 <template>
   <AllQuestions />
 
-  <img
-    style="
-      -webkit-user-select: none;
-      margin: auto;
-      background-color: hsl(0, 0%, 25%);
-    "
-    src="http://192.168.1.254:8192/"
-  />
+  <img src="http://192.168.1.254:8192/" />
 </template>
 
 <script>
@@ -17,3 +10,10 @@ export default {
   components: { AllQuestions },
 };
 </script>
+
+<style>
+img {
+  height: 100%;
+  width: 100%;
+}
+</style>

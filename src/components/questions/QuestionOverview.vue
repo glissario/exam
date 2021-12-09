@@ -30,9 +30,6 @@ export default {
       allQuestions: [],
     };
   },
-  async created() {
-    this.getAllQuestions();
-  },
   computed: {
     actualModule() {
       return this.$store.state.actualModule;
