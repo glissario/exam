@@ -1,7 +1,7 @@
 <template>
   <div class="question-list-wrapper" v-if="this.$store.state.actualModule">
     <h2>{{ this.actualModule.label }}</h2>
-    <div class="list-wrapper" v-if="allQuestions.length > 0">
+    <div class="list-wrapper">
       <ul>
         <Button
           v-for="(question, index) in actualQuestions"
