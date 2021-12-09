@@ -13,7 +13,9 @@
     </section>
     <form
       class="question-form"
-      v-if="this.$store.state.user.displayName !== null"
+      v-if="
+        this.$store.state.user && this.$store.state.user.displayName !== null
+      "
     >
       <i
         @click="openPopup = !openPopup"
@@ -57,7 +59,9 @@
       </div>
     </form>
     <Button
-      v-if="this.$store.state.user.displayName !== null"
+      v-if="
+        this.$store.state.user && this.$store.state.user.displayName !== null
+      "
       @click="submitQuestion"
       >Absenden
     </Button>

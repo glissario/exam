@@ -15,8 +15,8 @@ export default {
   components: { Button },
   methods: {
     logout() {
-      this.$store.state.user = null;
       this.$router.push({ name: "Login" });
+      this.$store.state.user = null;
     },
   },
 };

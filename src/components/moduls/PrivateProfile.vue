@@ -1,17 +1,24 @@
 <template>
   <div
-    v-if="!this.$store.state.user.emailVerified"
     class="verification-wrapper"
+    v-if="this.$store.state.user && !this.$store.state.user.emailVerified"
   >
     <div>
       <label for="display-name">Display-Name: </label>
       <InputText
-        @keyup.enter="setUserName"
         v-model="userName"
         id="display-name"
         type="text"
-        placeholder="neuer Username"
-        :disabled="this.$store.state.user.displayName !== null"
+        :placeholder="
+          this.$store.state.user == null ||
+          this.$store.state.user.displayName == null
+            ? 'neuer Username'
+            : this.$store.state.user.displayName
+        "
+        :disabled="
+          this.$store.state.user == null ||
+          this.$store.state.user.displayName !== null
+        "
       />
     </div>
     <small v-if="invalidUserName" id="username2-help" class="p-error"
@@ -20,13 +27,16 @@
 
     <Button
       @click="emailVerification"
+      :disabled="verifiedButtonText === 'E-Mail bereits verifiziert'"
       class="p-button-outlined"
-      :disabled="displayNameIsSet"
       >{{ verifiedButtonText }}</Button
     >
   </div>
 
-  <div v-if="this.$store.state.user.emailVerified" class="profile-wrapper">
+  <div
+    v-if="verifiedUser && this.$store.state.user.emailVerified"
+    class="profile-wrapper"
+  >
     <h2>Deine hinterlegten Daten</h2>
     <div class="profil-data-wrapper">
       <div class="profil-data">
@@ -83,14 +93,16 @@ export default {
       password: "",
       passwordConfirmation: "",
       invalidPassword: false,
-      displayNameIsSet: true,
     };
   },
   computed: {
     verifiedButtonText() {
-      return this.$store.state.user.emailVerified
+      return this.verifiedUser && this.$store.state.user.emailVerified
         ? "E-Mail bereits verifiziert"
         : "Bitte E-Mail verifizieren";
+    },
+    verifiedUser() {
+      return this.$store.state.user;
     },
   },
   methods: {
@@ -103,17 +115,24 @@ export default {
           this.invalidUserName = true;
           setTimeout(() => (this.invalidUserName = false), 2500);
         });
-        this.displayNameIsSet = false;
+        return true;
       } else {
         this.invalidUserName = true;
         setTimeout(() => (this.invalidUserName = false), 2500);
+        return false;
       }
     },
 
     emailVerification() {
-      sendEmailVerification(this.$store.state.user);
-      this.$store.state.user = null;
-      this.$router.push({ name: "Login" });
+      let userValidation = true;
+      if (this.$store.state.user.displayName == null) {
+        userValidation = this.setUserName();
+      }
+      if (userValidation) {
+        sendEmailVerification(this.$store.state.user);
+        this.$store.state.user = null;
+        this.$router.push({ name: "Login" });
+      }
     },
     resetPw() {
       const auth = getAuth();
