@@ -130,23 +130,6 @@ export default {
         ? this.amoutOfDescriptions-- && this.description.pop()
         : this.amoutOfKeywords;
     },
-    setDisplayName() {
-      if (this.displayName.length > 3) {
-        const auth = getAuth();
-
-        updateProfile(this.$store.state.user, {
-          displayName: this.displayName,
-        })
-          .then(() => {
-            // Profile updated!
-            // ...
-          })
-          .catch((error) => {
-            // An error occurred
-            // ...
-          });
-      }
-    },
     async submitQuestion() {
       await setDoc(
         doc(
@@ -165,6 +148,7 @@ export default {
         }
       );
       this.question = "";
+      this.selectedModule = null;
       this.editor.options.element.firstChild.innerText = "";
       this.amoutOfKeywords = 1;
       this.keyword = [];
