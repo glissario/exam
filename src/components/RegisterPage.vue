@@ -7,10 +7,13 @@
           type="email"
           pattern="true"
           placeholder="isba-E-Mail-Adresse"
-          :class="invalidLogin ? 'p-invalid' : null"
+          :class="noIsbaMailAdress ? 'p-invalid' : null"
         />
-        <small v-if="invalidLogin" id="username2-help" class="p-error"
+        <small v-if="noIsbaMailAdress" id="username2-help" class="p-error"
           >E-Mail ist keine isba-Mailadresse</small
+        >
+        <small v-if="emailInUse" id="username2-help" class="p-error"
+          >E-Mail ist bereits vorhanden</small
         >
       </div>
       <Password
@@ -55,7 +58,8 @@ export default {
   data() {
     return {
       login: null,
-      invalidLogin: false,
+      noIsbaMailAdress: false,
+      emailInUse: false,
       invalidPassword: false,
       password: null,
       passwordConfirmation: null,
@@ -72,28 +76,36 @@ export default {
   },
   methods: {
     registerUser() {
-      this.invalidLogin = false;
+      this.noIsbaMailAdress = false;
       this.invalidPassword = false;
 
-      if (this.password === this.passwordConfirmation) {
-        console.log("works");
-
-        const auth = getAuth();
-        createUserWithEmailAndPassword(auth, this.login, this.password);
-        this.invalidRegistration = false;
-        setTimeout(() => this.routeToLogin(), 3000);
-      } else {
-        if (
-          "@stud.isba.studium.de" !==
+      if (
+        this.password === this.passwordConfirmation &&
+        "@stud.isba.studium.de" !==
           this.login.substring(this.login.length - 21, this.login.length)
-        ) {
-          this.invalidLogin = true;
-          setTimeout(() => (this.invalidLogin = false), 2500);
-        }
-        if (this.password !== this.passwordConfirmation) {
-          this.invalidPassword = true;
-          setTimeout(() => (this.invalidPassword = false), 2500);
-        }
+      ) {
+        const auth = getAuth();
+        createUserWithEmailAndPassword(auth, this.login, this.password)
+          .then((testUser) => {
+            console.log(testUser);
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            if (errorCode == "auth/email-already-in-use") {
+              this.emailInUse = true;
+            }
+            setTimeout(() => this.routeToLogin(), 3000);
+          });
+      } else if (
+        "@stud.isba.studium.de" !==
+        this.login.substring(this.login.length - 21, this.login.length)
+      ) {
+        this.noIsbaMailAdress = true;
+        setTimeout(() => (this.noIsbaMailAdress = false), 2500);
+      }
+      if (this.password !== this.passwordConfirmation) {
+        this.invalidPassword = true;
+        setTimeout(() => (this.invalidPassword = false), 2500);
       }
     },
     routeToLogin() {
