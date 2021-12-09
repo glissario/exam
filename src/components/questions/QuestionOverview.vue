@@ -4,7 +4,7 @@
     <div class="list-wrapper" v-if="allQuestions.length > 0">
       <ul>
         <Button
-          v-for="(question, index) in allQuestions"
+          v-for="(question, index) in actualQuestions"
           :key="index"
           :actualQuestion="question"
           @click="routeToQuestion(question)"
@@ -31,20 +31,28 @@ export default {
     };
   },
   async created() {
-    const docSnap = await getDocs(
-      collection(firestore, "moduls", this.actualModule.label, "questions")
-    );
-
-    docSnap.forEach((doc) => {
-      this.allQuestions.push(doc.data());
-    });
+    this.getAllQuestions();
   },
   computed: {
     actualModule() {
       return this.$store.state.actualModule;
     },
+    actualQuestions() {
+      this.getAllQuestions();
+      return this.allQuestions;
+    },
   },
   methods: {
+    async getAllQuestions() {
+      this.allQuestions = [];
+      const docSnap = await getDocs(
+        collection(firestore, "moduls", this.actualModule.label, "questions")
+      );
+
+      docSnap.forEach((doc) => {
+        this.allQuestions.push(doc.data());
+      });
+    },
     routeToQuestion(question) {
       this.$store.state.actualQuestion = question;
       this.$router.push({

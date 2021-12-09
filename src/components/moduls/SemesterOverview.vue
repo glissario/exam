@@ -1,5 +1,5 @@
 <template>
-  <div class="semester-overview-wrapper">
+  <div v-if="actualSemester" class="semester-overview-wrapper">
     <h2>{{ actualSemester.label }}</h2>
     <p>Folgende Module werden geprüft:</p>
     <div class="buttonwrapper">

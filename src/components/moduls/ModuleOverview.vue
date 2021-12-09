@@ -73,6 +73,7 @@ export default {
     changeRoute() {
       this.$router.push({ name: "Moduls" });
       this.$store.state.actualSemester = this.filteredSemester();
+
       this.searchedQuestions = [];
       this.actualKeyword = "";
       if (
@@ -90,6 +91,7 @@ export default {
                 this.nodes[i].children[j].key.toString()
               ) {
                 this.$store.state.actualModule = this.nodes[i].children[j];
+
                 this.$router.push({ name: "QuestionOverview" });
                 this.$store.state.actualQuestion = null;
                 return;
