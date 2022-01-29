@@ -37,6 +37,9 @@
         <small v-if="invalidPassword" id="username2-help" class="p-error"
           >Passwörter stimmen nicht überein</small
         >
+        <small v-if="registerConfirmation" id="username2-help" class="p-success"
+          >Anmeldung hat geklappt</small
+        >
       </div>
       <Button @click="registerUser" class="p-button-outlined">
         {{ validRegistration }}
@@ -63,6 +66,7 @@ export default {
       invalidPassword: false,
       password: null,
       passwordConfirmation: null,
+      registerConfirmation: false,
       invalidRegistration: true,
     };
   },
@@ -87,7 +91,8 @@ export default {
         const auth = getAuth();
         createUserWithEmailAndPassword(auth, this.login, this.password)
           .then((testUser) => {
-            console.log(testUser);
+            this.registerConfirmation = true;
+            setTimeout(() => this.routeToLogin(), 3000);
           })
           .catch((error) => {
             const errorCode = error.code;

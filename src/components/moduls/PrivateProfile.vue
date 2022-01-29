@@ -24,6 +24,9 @@
     <small v-if="invalidUserName" id="username2-help" class="p-error"
       >zu kurzer Display-Name</small
     >
+    <small v-if="validEmailVerification" id="username2-help" class="p-success"
+      >E-Mail ist unterwegs</small
+    >
 
     <Button
       @click="emailVerification"
@@ -93,6 +96,7 @@ export default {
       password: "",
       passwordConfirmation: "",
       invalidPassword: false,
+      validEmailVerification: false,
     };
   },
   computed: {
@@ -127,6 +131,7 @@ export default {
       let userValidation = true;
       if (this.$store.state.user.displayName == null) {
         userValidation = this.setUserName();
+        this.validEmailVerification = true;
       }
       if (userValidation) {
         sendEmailVerification(this.$store.state.user);
