@@ -1,70 +1,71 @@
 {
-    "root": [
+  "root": [
+    {
+      "key": "firstSemester",
+      "label": "Erstes Semester",
+      "data": "Documents Folder",
+      "icon": "pi pi-fw pi-book",
+      "children": [
         {
-            "key": "firstSemester",
-            "label": "Erstes Semester",
-            "data": "Documents Folder",            
-            "icon": "pi pi-fw pi-book",
-            "children": [{
-                "key": "0-0",
-                "label": "Medizinische Grundlagen",
-                "data": "Work Folder",
-                "icon": "pi pi-fw pi-circle-off"       
-            },
-            {
-                "key": "0-1",
-                "label": "Klinische Medizin: Chirurgie und Teilgebiete",
-                "data": "Home Folder",
-                "icon": "pi pi-fw pi-circle-off"}
-            ]
-            },
-        
-        {
-            "key": "secondSemester",
-            "label": "Zweites Semester",
-            "data": "Events Folder",
-            "icon": "pi pi-fw pi-book",
-            "children": [
-                {
-                    "key": "1-0",
-                    "label": "Klinische Medizin: Innere Medizin und Teilgebiete",
-                    "data": "Home Folder",
-                    "icon": "pi pi-fw pi-circle-off"
-                },
-                {
-                    "key": "1-1",
-                    "label": "Medizintechnik, Medizinprodukte und EDV im Gesundheitswesen",
-                    "data": "Home Folder",
-                    "icon": "pi pi-fw pi-circle-off"
-                },
-                {
-                    "key": "1-2",
-                    "label": "Medizinisch, biochemische Grundlagen in Pharmakologie und Pathophysiologie",
-                    "data": "Home Folder",
-                    "icon": "pi pi-fw pi-circle-off"
-                }
-            ]
+          "key": "0-0",
+          "label": "1 - Medizinische Grundlagen",
+          "data": "Work Folder",
+          "icon": "pi pi-fw pi-circle-off"
         },
         {
-            "key": "thirdSemester",
-            "label": "Drittes Semester",
-            "data": "Events Folder",
-            "icon": "pi pi-fw pi-book",
-            "children": [
-                {
-                    "key": "2-0",
-                    "label": "Klinische Medizin: Anästhesie, Vertiefung medizinische Grundlagen",
-                    "data": "Home Folder",
-                    "icon": "pi pi-fw pi-circle-off"
-                },
-                {
-                    "key": "2-1",
-                    "label": "Noftallmanagement und Notfallmedizin; Rechtswissenschaft und Ablaufplanung",
-                    "data": "Home Folder",
-                    "icon": "pi pi-fw pi-circle-off"
-                }
-            ]
+          "key": "0-1",
+          "label": "2 - Klinische Medizin: Chirurgie und Teilgebiete",
+          "data": "Home Folder",
+          "icon": "pi pi-fw pi-circle-off"
         }
+      ]
+    },
 
-    ]
+    {
+      "key": "secondSemester",
+      "label": "Zweites Semester",
+      "data": "Events Folder",
+      "icon": "pi pi-fw pi-book",
+      "children": [
+        {
+          "key": "1-0",
+          "label": "3 - Klinische Medizin: Innere Medizin und Teilgebiete",
+          "data": "Home Folder",
+          "icon": "pi pi-fw pi-circle-off"
+        },
+        {
+          "key": "1-1",
+          "label": "4 - Medizintechnik, Medizinprodukte und EDV im Gesundheitswesen",
+          "data": "Home Folder",
+          "icon": "pi pi-fw pi-circle-off"
+        },
+        {
+          "key": "1-2",
+          "label": "5 - Medizinisch, biochemische Grundlagen in Pharmakologie und Pathophysiologie",
+          "data": "Home Folder",
+          "icon": "pi pi-fw pi-circle-off"
+        }
+      ]
+    },
+    {
+      "key": "thirdSemester",
+      "label": "Drittes Semester",
+      "data": "Events Folder",
+      "icon": "pi pi-fw pi-book",
+      "children": [
+        {
+          "key": "2-0",
+          "label": "6 - Klinische Medizin: Anästhesie, Vertiefung medizinische Grundlagen",
+          "data": "Home Folder",
+          "icon": "pi pi-fw pi-circle-off"
+        },
+        {
+          "key": "2-1",
+          "label": "7 - Noftallmanagement und Notfallmedizin; Rechtswissenschaft und Ablaufplanung",
+          "data": "Home Folder",
+          "icon": "pi pi-fw pi-circle-off"
+        }
+      ]
+    }
+  ]
 }
