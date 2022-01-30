@@ -3,6 +3,7 @@
     <section class="editor-popup" v-if="openPopup">
       <i class="pi pi-times-circle" @click="openPopup = !openPopup"></i>
       <i class="pi pi-save" v-if="noteValue !== null" @click="saveNotes"></i>
+      <Textarea v-model="noteValue" id="keyword" type="text" />
     </section>
     <i class="pi pi-times-circle" @click="closeDetails"></i>
     <i
@@ -38,6 +39,7 @@
 
 <script>
 import Button from "primevue/button";
+import Textarea from "primevue/textarea";
 
 import { getDoc, doc, setDoc } from "firebase/firestore";
 import firestore from "@/firestore.js";
@@ -45,7 +47,7 @@ import { defineComponent } from "@vue/runtime-core";
 //import InputText from "primevue/inputtext";
 
 export default defineComponent({
-  components: { Button /*, InputText*/ },
+  components: { Button, Textarea /*, InputText*/ },
   data() {
     return {
       showKeys: false,
@@ -121,6 +123,10 @@ export default defineComponent({
   width: 80%;
   margin: 1rem auto;
   border: 1px solid var(--font-color);
+  textarea {
+    margin-top: 2.5rem;
+    height: 100%;
+  }
   .pi-times-circle {
     position: absolute;
     top: 1rem;
