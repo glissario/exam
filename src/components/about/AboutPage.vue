@@ -16,6 +16,15 @@
       <img src="@/assets/insta.svg" />
       Follow us!
     </a>
+    <a
+      class="insta"
+      href="https://www.facebook.com/profile.php?id=100070834391839"
+      target="_blank"
+      rel="noopenen noopener"
+    >
+      <img src="@/assets/facebook.svg" />
+      Like us!
+    </a>
   </div>
 </template>
 
@@ -28,6 +37,8 @@
 img {
   height: 1rem;
   margin: 0;
+  width: auto;
+  margin-right: 0.25rem;
 }
 .insta {
   display: flex;

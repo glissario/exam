@@ -22,10 +22,11 @@
         {{ keyword }}
       </li>
     </ul>
-    <div v-if="actualQuestion.author" class="author-wrapper">
+
+    <!--div v-if="actualQuestion.author" class="author-wrapper">
       <div></div>
       <p>{{ "von " + actualQuestion.author }}</p>
-    </div>
+    </div-->
     <div v-if="noteValue !== ''" class="notes">
       <i class="pi pi-times-circle"></i>
       <h3>Eigene Notizen</h3>

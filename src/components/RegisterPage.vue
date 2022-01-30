@@ -85,7 +85,7 @@ export default {
 
       if (
         this.password === this.passwordConfirmation &&
-        "@stud.isba.studium.de" !==
+        "@stud.isba-studium.de" !==
           this.login.substring(this.login.length - 21, this.login.length)
       ) {
         const auth = getAuth();
@@ -102,7 +102,7 @@ export default {
             setTimeout(() => this.routeToLogin(), 3000);
           });
       } else if (
-        "@stud.isba.studium.de" !==
+        "@stud.isba-studium.de" !==
         this.login.substring(this.login.length - 21, this.login.length)
       ) {
         this.noIsbaMailAdress = true;
