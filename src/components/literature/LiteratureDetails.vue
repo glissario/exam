@@ -7,7 +7,7 @@
         {{ "Gefällt mir (" + overallVotes + ")" }}
       </p>
       <div class="space"></div>
-      <p v-if="showDetails" class="author">{{ author }}</p>
+      <!--p v-if="showDetails" class="author">{{ author }}</p-->
     </div>
   </li>
 </template>
