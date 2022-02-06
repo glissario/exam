@@ -2,8 +2,8 @@
   <div class="about-wrapper">
     <h2>Klausuren-Fragensammlung</h2>
     <p>
-      Die Die MedAssSchaft stellt auf dieser Seite eine Plattform zur Verfügung,
-      auf der Prüfungsfragen geteilt werden können.
+      Die MedAssSchaft stellt auf dieser Seite eine Plattform zur Verfügung, auf
+      der Prüfungsfragen geteilt werden können.
     </p>
     <p>Auch Literaturtipps für die einzelnen Module können geteilt werden</p>
 
