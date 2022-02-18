@@ -52,6 +52,7 @@ export default {
     },
     routeToQuestion(question) {
       this.$store.state.actualQuestion = question;
+      console.log(question);
       this.$router.push({
         name: "QuestionDetails",
         params: {
