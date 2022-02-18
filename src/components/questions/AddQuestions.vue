@@ -49,22 +49,24 @@
         <label for="keyword">{{ index + ". Schlüsselwort" }} </label>
         <div class="keyword-line">
           <InputText v-model="keyword[index - 1]" id="keyword" type="text" />
-          <Button v-if="index == '1'" @click="addKeyword">
+          <button v-if="index == '1'" @click="addKeyword">
             <i class="pi pi-plus-circle" size="2rem"></i>
-          </Button>
-          <Button v-if="index == '1'" @click="removeKeyword">
+          </button>
+          <button v-if="index == '1'" @click="removeKeyword">
             <i class="pi pi-minus-circle" size="2rem"></i>
-          </Button>
+          </button>
         </div>
       </div>
     </form>
-    <Button
+    <button
       v-if="
         this.$store.state.user && this.$store.state.user.displayName !== null
       "
       @click="submitQuestion"
-      >Absenden
-    </Button>
+      class="outlined-button"
+    >
+      Absenden
+    </button>
   </div>
 </template>
 
@@ -76,12 +78,11 @@ import firestore from "@/firestore.js";
 import Dropdown from "primevue/dropdown";
 import moduls from "@/components/moduls/modulePlan.json";
 import InputText from "primevue/inputtext";
-import Button from "primevue/button";
 import { Editor, EditorContent } from "@tiptap/vue-3";
 import StarterKit from "@tiptap/starter-kit";
 
 export default {
-  components: { InputText, Button, Dropdown, EditorContent },
+  components: { InputText, Dropdown, EditorContent },
   data() {
     return {
       amoutOfKeywords: 1,
@@ -163,7 +164,6 @@ export default {
   min-height: 10rem;
   width: 100%;
   padding-right: 0.5rem;
-  padding-bottom: 2rem;
   margin: 0 auto;
   .pi-question-circle,
   .pi-times-circle {

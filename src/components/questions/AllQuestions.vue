@@ -10,6 +10,7 @@
     {{ modul.question }}
   </Button>
 
+  <EditQuestions v-if="this.$store.state.actualQuestion" />
   <QuestionDetails v-if="this.$store.state.actualQuestion" />
 </template>
 
@@ -19,9 +20,10 @@ import Button from "primevue/button";
 import firestore from "@/firestore.js";
 import moduls from "@/components/moduls/modulePlan.json";
 import QuestionDetails from "@/components/questions/QuestionDetails.vue";
+import EditQuestions from "@/components/questions/EditQuestions.vue";
 
 export default {
-  components: { QuestionDetails, Button },
+  components: { QuestionDetails, Button, EditQuestions },
   data() {
     return {
       allQuestions: [],

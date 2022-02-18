@@ -51,6 +51,25 @@ html {
   }
 }
 
+.outlined-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.5rem, 1rem;
+  margin: 0.35rem auto;
+  color: var(--third-color);
+  cursor: pointer;
+  height: 2.25rem;
+  width: 100%;
+  max-width: 18rem;
+}
+
+.outlined-button:hover {
+  color: var(--white-color);
+  background-color: var(--background-color);
+}
+
 img {
   margin: 0 auto;
   max-width: 250px;

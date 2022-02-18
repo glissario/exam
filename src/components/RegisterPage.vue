@@ -41,23 +41,22 @@
           >Anmeldung hat geklappt</small
         >
       </div>
-      <Button @click="registerUser" class="p-button-outlined">
+      <button @click="registerUser" class="outlined-button">
         {{ validRegistration }}
-      </Button>
+      </button>
     </div>
-    <Button @click="routeToLogin" class="p-button-outlined"> Zum Login </Button>
+    <button @click="routeToLogin" class="outlined-button">Zum Login</button>
   </section>
 </template>
 
 <script>
-import Button from "primevue/button";
 import Password from "primevue/password";
 import InputText from "primevue/inputtext";
 import firestore from "@/firestore";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 export default {
-  components: { Button, Password, InputText },
+  components: { Password, InputText },
   data() {
     return {
       login: null,

@@ -13,24 +13,23 @@
         >falsches Passwort</small
       >
       <div class="pw-wrapper">
-        <Button @click="resetPw" class="reset-pw p-button-outlined"
-          >neues Passwort</Button
-        >
+        <button @click="resetPw" class="reset-pw outlined-button">
+          neues Passwort
+        </button>
 
-        <Button @click="checkLogin" class="p-button-outlined"> Login </Button>
+        <button @click="checkLogin" class="outlined-button">Login</button>
       </div>
     </div>
-    <Button @click="routeToRegister" class="p-button-outlined p-blue">
+    <button @click="routeToRegister" class="outlined-button">
       Zur Registrierung
-    </Button>
+    </button>
   </section>
 </template>
 
 <script>
-import Button from "primevue/button";
 import Password from "primevue/password";
 import InputText from "primevue/inputtext";
-import firestore from "@/firestore";
+
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -38,7 +37,7 @@ import {
 } from "firebase/auth";
 
 export default {
-  components: { Button, Password, InputText },
+  components: { Password, InputText },
   data() {
     return {
       password: null,
@@ -95,25 +94,9 @@ export default {
     margin: 0.35rem 0;
   }
 
-  .p-button {
-    color: var(--third-color);
-    margin: 0.35rem 0;
-    width: 13.8rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
   .p-password {
     //border: 1px solid var(--third-color);
     width: 18rem;
-  }
-
-  .p-button {
-    width: 18rem;
-  }
-  .p-button:hover {
-    color: var(--white-color);
-    background-color: var(--background-color);
   }
 }
 .pw-wrapper {
@@ -126,7 +109,8 @@ export default {
     width: 30%;
     font-size: 12px;
   }
-  .p-button:hover {
+
+  .outlined-button:hover {
     color: var(--white-color);
     background-color: var(--background-color);
   }
