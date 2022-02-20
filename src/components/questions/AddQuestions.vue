@@ -132,6 +132,12 @@ export default {
         : this.amoutOfKeywords;
     },
     async submitQuestion() {
+      const date = new Date();
+      let month = (date.getMonth() + 1).toString();
+      month.length === 1 ? (month = "0" + month) : month;
+      const submitDate =
+        date.getDate() + "." + month + "." + date.getFullYear();
+
       await setDoc(
         doc(
           firestore,
@@ -146,6 +152,7 @@ export default {
           description: this.editor.getHTML(),
           keyword: this.keyword,
           author: this.$store.state.user.displayName,
+          date: submitDate,
         }
       );
       this.question = "";

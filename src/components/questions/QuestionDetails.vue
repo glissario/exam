@@ -24,10 +24,10 @@
       </li>
     </ul>
 
-    <!--div v-if="actualQuestion.author" class="author-wrapper">
+    <div v-if="actualQuestion.date" class="date-wrapper">
       <div></div>
-      <p>{{ "von " + actualQuestion.author }}</p>
-    </div-->
+      <p>vom {{ actualQuestion.date }}</p>
+    </div>
     <div v-if="noteValue !== ''" class="notes">
       <i class="pi pi-times-circle"></i>
       <h3>Eigene Notizen</h3>
@@ -184,7 +184,7 @@ export default defineComponent({
     list-style: none;
     padding: 0.25rem 0;
   }
-  .author-wrapper {
+  .date-wrapper {
     display: flex;
     flex-direction: row-reverse;
     p {
