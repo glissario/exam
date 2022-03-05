@@ -29,6 +29,7 @@
 <script>
 import Password from "primevue/password";
 import InputText from "primevue/inputtext";
+import firestore from "@/firestore";
 
 import {
   getAuth,
