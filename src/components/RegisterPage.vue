@@ -37,6 +37,12 @@
         <small v-if="invalidPassword" id="username2-help" class="p-error"
           >Passwörter stimmen nicht überein</small
         >
+        <small v-if="weakPassword" id="username2-help" class="p-error"
+          >zu schwaches Passwort</small
+        >
+        <small v-if="unknownError" id="username2-help" class="p-error"
+          >ein unbekannter Fehler ist aufgetreten</small
+        >
         <small v-if="registerConfirmation" id="username2-help" class="p-success"
           >Anmeldung hat geklappt</small
         >
@@ -62,6 +68,8 @@ export default {
       login: null,
       noIsbaMailAdress: false,
       emailInUse: false,
+      unknownError: false,
+      weakPassword: false,
       invalidPassword: false,
       password: null,
       passwordConfirmation: null,
@@ -84,21 +92,36 @@ export default {
 
       if (
         this.password === this.passwordConfirmation &&
-        "@stud.isba-studium.de" !==
+        "@stud.isba-studium.de" ===
           this.login.substring(this.login.length - 21, this.login.length)
       ) {
         const auth = getAuth();
         createUserWithEmailAndPassword(auth, this.login, this.password)
-          .then((testUser) => {
+          .then((user) => {
+            console.log(user);
             this.registerConfirmation = true;
             setTimeout(() => this.routeToLogin(), 3000);
           })
           .catch((error) => {
             const errorCode = error.code;
+
             if (errorCode == "auth/email-already-in-use") {
               this.emailInUse = true;
+              setTimeout(() => (this.emailInUse = false), 2500);
             }
-            setTimeout(() => this.routeToLogin(), 3000);
+            if (errorCode == "auth/weak-password") {
+              this.weakPassword = true;
+              setTimeout(() => (this.weakPassword = false), 2500);
+            }
+            if (
+              errorCode !== "auth/weak-password" &&
+              errorCode !== "auth/email-already-in-use"
+            ) {
+              this.unknownError = true;
+              setTimeout(() => (this.unknownError = false), 2500);
+            }
+
+            // setTimeout(() => this.routeToLogin(), 3000);
           });
       } else if (
         "@stud.isba-studium.de" !==
