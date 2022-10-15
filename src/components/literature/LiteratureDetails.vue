@@ -63,7 +63,7 @@ export default defineComponent({
     },
   },
   methods: {
-    voting(event) {
+    voting() {
       this.isVoted ? this.overallVotes-- : this.overallVotes++;
       this.isVoted = !this.isVoted;
       this.voteLiterature();

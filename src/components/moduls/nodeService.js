@@ -1,8 +1,6 @@
-import moduls from "./modulePlan.json"
+import moduls from "./modulePlan.json";
 export default class NodeService {
-
-    getTreeNodes() {
-        return moduls.root;
-    }
-
+  getTreeNodes() {
+    return moduls.root;
+  }
 }

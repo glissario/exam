@@ -72,7 +72,6 @@
 
 <script>
 import { doc, setDoc } from "firebase/firestore";
-import { getAuth, updateProfile } from "firebase/auth";
 
 import firestore from "@/firestore.js";
 import Dropdown from "primevue/dropdown";

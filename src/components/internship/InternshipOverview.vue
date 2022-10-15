@@ -39,12 +39,12 @@
 </template>
 
 <script lang="ts">
-import { defineAsyncComponent, defineComponent } from "vue";
+import { defineComponent } from "vue";
 import InternshipDetails from "./InternshipDetails.vue";
 import Button from "primevue/button";
 import { doc, setDoc } from "firebase/firestore";
 import { collection, getDocs } from "firebase/firestore";
-import  InternshipModel  from "./internship.model";
+import InternshipModel from "./internship.model";
 import firestore from "@/firestore.js";
 
 export default defineComponent({

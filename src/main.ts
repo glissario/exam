@@ -7,7 +7,7 @@ import store from "./store";
 import Button from "primevue/button";
 import TreeSelect from "primevue/treeselect";
 import InputText from "primevue/inputtext";
-import { Editor, EditorContent } from "@tiptap/vue-3";
+import { Editor } from "@tiptap/vue-3";
 
 import "primevue/resources/themes/saga-blue/theme.css"; //theme
 import "primevue/resources/primevue.min.css"; //core css
