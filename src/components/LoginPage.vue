@@ -47,18 +47,6 @@ export default {
       delay: 200,
     };
   },
-  created() {
-    let user = JSON.parse(sessionStorage.getItem("user"));
-    if (user) {
-      this.$store.state.user = user;
-
-      if (this.$store.state.user.emailVerified) {
-        this.$router.push({ name: "Moduls" });
-      } else {
-        this.$router.push({ name: "Profil" });
-      }
-    }
-  },
   methods: {
     async checkLogin() {
       const auth = getAuth();
@@ -66,8 +54,6 @@ export default {
         .then((userCredential) => {
           // Signed in
           this.$store.state.user = userCredential.user;
-
-          sessionStorage.setItem("user", JSON.stringify(userCredential.user));
 
           if (this.$store.state.user.emailVerified) {
             this.$router.push({ name: "Moduls" });
