@@ -44,7 +44,7 @@ import InternshipDetails from "./InternshipDetails.vue";
 import Button from "primevue/button";
 import { doc, setDoc } from "firebase/firestore";
 import { collection, getDocs } from "firebase/firestore";
-import { InternshipModel } from "./internship.model";
+import  InternshipModel  from "./internship.model";
 import firestore from "@/firestore.js";
 
 export default defineComponent({
@@ -63,7 +63,7 @@ export default defineComponent({
     const docSnap = await getDocs(collection(firestore, "internship"));
 
     docSnap.forEach((doc) => {
-      this.allInternship.push(doc.data());
+      this.allInternship.push(doc.data() as InternshipModel);
     });
     console.log(this.allInternship);
   },
