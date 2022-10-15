@@ -8,6 +8,7 @@
       <router-link :to="{ name: 'Moduls' }">Module einsehen</router-link>
       <router-link :to="{ name: 'Questions' }">Fragen eingeben</router-link>
       <router-link :to="{ name: 'Literatur' }">Literatur</router-link>
+      <router-link :to="{ name: 'Internship' }">Praktika</router-link>
       <router-link :to="{ name: 'Profil' }">Profil</router-link>
     </div>
   </nav>
@@ -19,7 +20,8 @@ export default {
 
   data() {
     return {
-      mobileNavigation: window.matchMedia(screen && "(max-width:650)").matches,
+      mobileNavigation: window.matchMedia(screen && "(max-width:735px)")
+        .matches,
     };
   },
   created() {
@@ -34,7 +36,7 @@ export default {
   methods: {
     checkMobileNavigation() {
       this.mobileNavigation = window.matchMedia(
-        screen && "(max-width:650px)"
+        screen && "(max-width:735px)"
       ).matches;
     },
   },
