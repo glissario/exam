@@ -15,7 +15,7 @@
     "firebase": "^9.2.0",
     "firebaseui": "^6.0.0",
     "json-schema": ">=0.4.0",
-    "primeicons": "5.0.0",
+    "primeicons": "6.0.1",
     "primevue": "^3.17.0",
     "tiptap-vuetify": "2.24.0",
     "vue": "^3.2.41",
