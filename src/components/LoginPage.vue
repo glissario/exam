@@ -12,6 +12,12 @@
       <small v-if="showError" id="username2-help" class="p-error"
         >falsches Passwort</small
       >
+      <small v-if="resetPwMessage" id="username2-help" class="p-error"
+        >neues Passwort angefordert</small
+      >
+      <small v-if="noLoginMessage" id="username2-help" class="p-error"
+        >kein Benutzername angegeben</small
+      >
       <div class="pw-wrapper">
         <button @click="resetPw" class="reset-pw outlined-button">
           neues Passwort
@@ -44,6 +50,8 @@ export default {
       password: null,
       login: null,
       showError: false,
+      resetPwMessage: false,
+      noLoginMessage: false,
       delay: 200,
     };
   },
@@ -81,8 +89,15 @@ export default {
         });
     },
     resetPw() {
-      const auth = getAuth();
-      sendPasswordResetEmail(auth, this.login);
+      if (this.login) {
+        const auth = getAuth();
+        sendPasswordResetEmail(auth, this.login);
+        this.resetPwMessage = true;
+        setTimeout(() => (this.resetPwMessage = false), 2500);
+      } else {
+        this.noLoginMessage = true;
+        setTimeout(() => (this.noLoginMessage = false), 2500);
+      }
     },
     routeToRegister() {
       this.$router.push({ name: "Register" });

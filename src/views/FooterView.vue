@@ -11,6 +11,7 @@ export default {
     logout() {
       this.$router.push({ name: "Login" });
       this.$store.state.user = null;
+      sessionStorage.removeItem("user");
     },
   },
 };
